@@ -53,6 +53,18 @@ public class Gunna {
                     System.out.println("  [X] " + tasks[taskIndex]);
                     System.out.println(delimiter);
                 }
+            } else if (command.startsWith("unmark ")) {
+                // Parse task number from "unmark N"
+                int taskNumber = Integer.parseInt(command.substring(7));
+                int taskIndex = taskNumber - 1;
+
+                if (taskIndex >= 0 && taskIndex < taskCount) {
+                    isDone[taskIndex] = false;
+                    System.out.println(delimiter);
+                    System.out.println("OK, I've marked this task as not done yet:");
+                    System.out.println("  [ ] " + tasks[taskIndex]);
+                    System.out.println(delimiter);
+                }
             } else {
                 // Add task to array
                 tasks[taskCount] = command;
