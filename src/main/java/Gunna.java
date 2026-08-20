@@ -17,6 +17,10 @@ public class Gunna {
         System.out.println("What can I do for you?");
         System.out.println(delimiter);
 
+        // Array to store tasks (max 100)
+        String[] tasks = new String[100];
+        int taskCount = 0;
+
         Scanner scanner = new Scanner(System.in);
         String command;
 
@@ -28,11 +32,21 @@ public class Gunna {
                 System.out.println("Bye. Hope to see you again soon!");
                 System.out.println(delimiter);
                 break;
-            }
+            } else if (command.equals("list")) {
+                System.out.println(delimiter);
+                for (int i = 0; i < taskCount; i++) {
+                    System.out.println(" " + (i + 1) + ". " + tasks[i]);
+                }
+                System.out.println(delimiter);
+            } else {
+                // Add task to array
+                tasks[taskCount] = command;
+                taskCount++;
 
-            System.out.println(delimiter);
-            System.out.println(" " + command);
-            System.out.println(delimiter);
+                System.out.println(delimiter);
+                System.out.println(" added: " + command);
+                System.out.println(delimiter);
+            }
         }
 
         scanner.close();
