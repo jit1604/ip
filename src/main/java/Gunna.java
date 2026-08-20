@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class Gunna {
     public static void main(String[] args) {
         String banner =
@@ -14,7 +16,25 @@ public class Gunna {
         System.out.println("Hello! I'm GUNNA.");
         System.out.println("What can I do for you?");
         System.out.println(delimiter);
-        System.out.println("Bye. Hope to see you again soon!");
-        System.out.println(delimiter);
+
+        Scanner scanner = new Scanner(System.in);
+        String command;
+
+        while (true) {
+            command = scanner.nextLine();
+
+            if (command.equals("bye")) {
+                System.out.println(delimiter);
+                System.out.println("Bye. Hope to see you again soon!");
+                System.out.println(delimiter);
+                break;
+            }
+
+            System.out.println(delimiter);
+            System.out.println(" " + command);
+            System.out.println(delimiter);
+        }
+
+        scanner.close();
     }
 }
