@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Gunna {
@@ -17,9 +18,8 @@ public class Gunna {
         System.out.println("     What can I do for you?");
         System.out.println(delimiter);
 
-        // Array to store tasks (max 100)
-        Task[] tasks = new Task[100];
-        int taskCount = 0;
+        // ArrayList to store tasks (dynamic sizing)
+        ArrayList<Task> tasks = new ArrayList<>();
 
         Scanner scanner = new Scanner(System.in);
         String command;
@@ -35,8 +35,8 @@ public class Gunna {
             } else if (command.equals("list")) {
                 System.out.println(delimiter);
                 System.out.println("     Here are the tasks in your list:");
-                for (int i = 0; i < taskCount; i++) {
-                    System.out.println("     " + (i + 1) + "." + tasks[i]);
+                for (int i = 0; i < tasks.size(); i++) {
+                    System.out.println("     " + (i + 1) + "." + tasks.get(i));
                 }
                 System.out.println(delimiter);
             } else if (command.equals("mark") || command.startsWith("mark ")) {
@@ -53,16 +53,16 @@ public class Gunna {
                         int taskNumber = Integer.parseInt(numStr);
                         int taskIndex = taskNumber - 1;
 
-                        if (taskIndex < 0 || taskIndex >= taskCount) {
+                        if (taskIndex < 0 || taskIndex >= tasks.size()) {
                             System.out.println(delimiter);
                             System.out.println("     OOPS!!! Task number " + taskNumber + " doesn't exist.");
-                            System.out.println("     You have " + taskCount + " task(s) in your list.");
+                            System.out.println("     You have " + tasks.size() + " task(s) in your list.");
                             System.out.println(delimiter);
                         } else {
-                            tasks[taskIndex].markAsDone();
+                            tasks.get(taskIndex).markAsDone();
                             System.out.println(delimiter);
                             System.out.println("     Nice! I've marked this task as done:");
-                            System.out.println("       " + tasks[taskIndex]);
+                            System.out.println("       " + tasks.get(taskIndex));
                             System.out.println(delimiter);
                         }
                     } catch (NumberFormatException e) {
@@ -85,16 +85,16 @@ public class Gunna {
                         int taskNumber = Integer.parseInt(numStr);
                         int taskIndex = taskNumber - 1;
 
-                        if (taskIndex < 0 || taskIndex >= taskCount) {
+                        if (taskIndex < 0 || taskIndex >= tasks.size()) {
                             System.out.println(delimiter);
                             System.out.println("     OOPS!!! Task number " + taskNumber + " doesn't exist.");
-                            System.out.println("     You have " + taskCount + " task(s) in your list.");
+                            System.out.println("     You have " + tasks.size() + " task(s) in your list.");
                             System.out.println(delimiter);
                         } else {
-                            tasks[taskIndex].markAsNotDone();
+                            tasks.get(taskIndex).markAsNotDone();
                             System.out.println(delimiter);
                             System.out.println("     OK, I've marked this task as not done yet:");
-                            System.out.println("       " + tasks[taskIndex]);
+                            System.out.println("       " + tasks.get(taskIndex));
                             System.out.println(delimiter);
                         }
                     } catch (NumberFormatException e) {
@@ -112,13 +112,13 @@ public class Gunna {
                     System.out.println("     OOPS!!! The description of a todo cannot be empty.");
                     System.out.println(delimiter);
                 } else {
-                    tasks[taskCount] = new Todo(description);
-                    taskCount++;
+                    Task newTask = new Todo(description);
+                    tasks.add(newTask);
 
                     System.out.println(delimiter);
                     System.out.println("     Got it. I've added this task:");
-                    System.out.println("       " + tasks[taskCount - 1]);
-                    System.out.println("     Now you have " + taskCount + " tasks in the list.");
+                    System.out.println("       " + newTask);
+                    System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
                     System.out.println(delimiter);
                 }
             } else if (command.equals("deadline") || command.startsWith("deadline ")) {
@@ -155,13 +155,13 @@ public class Gunna {
                         System.out.println("     OOPS!!! The deadline time cannot be empty.");
                         System.out.println(delimiter);
                     } else {
-                        tasks[taskCount] = new Deadline(description, by);
-                        taskCount++;
+                        Task newTask = new Deadline(description, by);
+                        tasks.add(newTask);
 
                         System.out.println(delimiter);
                         System.out.println("     Got it. I've added this task:");
-                        System.out.println("       " + tasks[taskCount - 1]);
-                        System.out.println("     Now you have " + taskCount + " tasks in the list.");
+                        System.out.println("       " + newTask);
+                        System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
                         System.out.println(delimiter);
                     }
                 }
@@ -171,7 +171,7 @@ public class Gunna {
                 int fromIndex = remaining.indexOf(" /from ");
                 int toIndex = remaining.indexOf(" /to ");
 
-                if (fromIndex == -1 || toIndex == -1) {
+                if (fromIndex == -1 || toIndex == -1 || fromIndex + 7 > toIndex) {
                     System.out.println(delimiter);
                     System.out.println("     OOPS!!! Please use the format: event <description> /from <time> /to <time>");
                     System.out.println(delimiter);
@@ -189,13 +189,46 @@ public class Gunna {
                         System.out.println("     OOPS!!! The event time cannot be empty.");
                         System.out.println(delimiter);
                     } else {
-                        tasks[taskCount] = new Event(description, from, to);
-                        taskCount++;
+                        Task newTask = new Event(description, from, to);
+                        tasks.add(newTask);
 
                         System.out.println(delimiter);
                         System.out.println("     Got it. I've added this task:");
-                        System.out.println("       " + tasks[taskCount - 1]);
-                        System.out.println("     Now you have " + taskCount + " tasks in the list.");
+                        System.out.println("       " + newTask);
+                        System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
+                        System.out.println(delimiter);
+                    }
+                }
+            } else if (command.equals("delete") || command.startsWith("delete ")) {
+                // Parse delete command: delete <task number>
+                String numStr = command.length() > 7 ? command.substring(7).trim() : "";
+
+                if (numStr.isEmpty()) {
+                    System.out.println(delimiter);
+                    System.out.println("     OOPS!!! Please specify which task to delete.");
+                    System.out.println("     Usage: delete <task number>");
+                    System.out.println(delimiter);
+                } else {
+                    try {
+                        int taskNumber = Integer.parseInt(numStr);
+                        int taskIndex = taskNumber - 1;
+
+                        if (taskIndex < 0 || taskIndex >= tasks.size()) {
+                            System.out.println(delimiter);
+                            System.out.println("     OOPS!!! Task number " + taskNumber + " doesn't exist.");
+                            System.out.println("     You have " + tasks.size() + " task(s) in your list.");
+                            System.out.println(delimiter);
+                        } else {
+                            Task removedTask = tasks.remove(taskIndex);
+                            System.out.println(delimiter);
+                            System.out.println("     Noted. I've removed this task:");
+                            System.out.println("       " + removedTask);
+                            System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
+                            System.out.println(delimiter);
+                        }
+                    } catch (NumberFormatException e) {
+                        System.out.println(delimiter);
+                        System.out.println("     OOPS!!! Task number must be a valid number.");
                         System.out.println(delimiter);
                     }
                 }
