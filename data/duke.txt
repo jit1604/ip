@@ -1,0 +1,2 @@
+D | 0 | homework | sunday 2pm
+E | 0 | dawg | sunday 2pm | sunday 6pm

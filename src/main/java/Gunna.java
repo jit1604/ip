@@ -21,6 +21,9 @@ public class Gunna {
         // ArrayList to store tasks (dynamic sizing)
         ArrayList<Task> tasks = new ArrayList<>();
 
+        // Storage to save/load tasks from disk
+        Storage storage = new Storage("./data/duke.txt");
+
         Scanner scanner = new Scanner(System.in);
         String command;
 
@@ -64,6 +67,7 @@ public class Gunna {
                             System.out.println("     Nice! I've marked this task as done:");
                             System.out.println("       " + tasks.get(taskIndex));
                             System.out.println(delimiter);
+                            storage.saveTasks(tasks);
                         }
                     } catch (NumberFormatException e) {
                         System.out.println(delimiter);
@@ -96,6 +100,7 @@ public class Gunna {
                             System.out.println("     OK, I've marked this task as not done yet:");
                             System.out.println("       " + tasks.get(taskIndex));
                             System.out.println(delimiter);
+                            storage.saveTasks(tasks);
                         }
                     } catch (NumberFormatException e) {
                         System.out.println(delimiter);
@@ -120,6 +125,7 @@ public class Gunna {
                     System.out.println("       " + newTask);
                     System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
                     System.out.println(delimiter);
+                    storage.saveTasks(tasks);
                 }
             } else if (command.equals("deadline") || command.startsWith("deadline ")) {
                 // Parse deadline command: deadline <description> /by <time>
@@ -163,6 +169,7 @@ public class Gunna {
                         System.out.println("       " + newTask);
                         System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
                         System.out.println(delimiter);
+                        storage.saveTasks(tasks);
                     }
                 }
             } else if (command.equals("event") || command.startsWith("event ")) {
@@ -171,6 +178,11 @@ public class Gunna {
                 int fromIndex = remaining.indexOf(" /from ");
                 int toIndex = remaining.indexOf(" /to ");
 
+                // Check for /to without trailing space at the end
+                if (toIndex == -1 && remaining.contains(" /to")) {
+                    toIndex = remaining.lastIndexOf(" /to");
+                }
+
                 if (fromIndex == -1 || toIndex == -1 || fromIndex + 7 > toIndex) {
                     System.out.println(delimiter);
                     System.out.println("     OOPS!!! Please use the format: event <description> /from <time> /to <time>");
@@ -178,7 +190,13 @@ public class Gunna {
                 } else {
                     String description = remaining.substring(0, fromIndex).trim();
                     String from = remaining.substring(fromIndex + 7, toIndex).trim();
-                    String to = remaining.substring(toIndex + 5).trim();
+                    String to;
+                    // Handle both " /to " and " /to" (at end without trailing space)
+                    if (remaining.indexOf(" /to ") != -1) {
+                        to = remaining.substring(toIndex + 5).trim();
+                    } else {
+                        to = remaining.substring(toIndex + 4).trim();  // " /to" is 4 chars
+                    }
 
                     if (description.isEmpty()) {
                         System.out.println(delimiter);
@@ -197,6 +215,7 @@ public class Gunna {
                         System.out.println("       " + newTask);
                         System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
                         System.out.println(delimiter);
+                        storage.saveTasks(tasks);
                     }
                 }
             } else if (command.equals("delete") || command.startsWith("delete ")) {
@@ -225,6 +244,7 @@ public class Gunna {
                             System.out.println("       " + removedTask);
                             System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
                             System.out.println(delimiter);
+                            storage.saveTasks(tasks);
                         }
                     } catch (NumberFormatException e) {
                         System.out.println(delimiter);
