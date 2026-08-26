@@ -23,6 +23,10 @@ public class Task {
         return this.description;
     }
 
+    public boolean isDone() {
+        return this.isDone;
+    }
+
     /**
      * Converts the task to a file-safe format for storage.
      * Default implementation for base Task class (not typically used directly).
