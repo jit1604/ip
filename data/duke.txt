@@ -1,5 +1,2 @@
 T | 0 | buy groceries
 E | 0 | meeting | 2pm | 3pm
-T | 0 | read \| write book
-D | 0 | submit report | Friday
-E | 0 | meeting | 2pm | 4pm

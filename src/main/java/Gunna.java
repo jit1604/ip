@@ -1,3 +1,4 @@
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -19,7 +20,9 @@ public class Gunna {
         System.out.println(delimiter);
 
         // Storage to save/load tasks from disk
-        Storage storage = new Storage("./data/duke.txt");
+        // Using OS-independent path construction with relative path
+        String filePath = "data" + File.separator + "duke.txt";
+        Storage storage = new Storage(filePath);
 
         // Load tasks from file
         ArrayList<Task> tasks = storage.loadTasks();
