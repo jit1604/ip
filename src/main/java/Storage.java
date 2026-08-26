@@ -157,7 +157,11 @@ public class Storage {
                 if (by.trim().isEmpty()) {
                     return null;
                 }
-                task = new Deadline(description, by);
+                try {
+                    task = Deadline.createWithDateString(description, by);
+                } catch (Exception e) {
+                    return null;  // Invalid date format in file
+                }
                 break;
             case "E":
                 if (parts.length != 5) {
@@ -245,7 +249,7 @@ public class Storage {
         } else if (task instanceof Deadline) {
             Deadline deadline = (Deadline) task;
             return "D | " + status + " | " + escapeText(task.getDescription())
-                    + " | " + escapeText(deadline.getBy());
+                    + " | " + escapeText(deadline.getByForStorage());
         } else if (task instanceof Event) {
             Event event = (Event) task;
             return "E | " + status + " | " + escapeText(task.getDescription())
