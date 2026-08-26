@@ -1,0 +1,2 @@
+T | 0 | buy groceries
+E | 0 | meeting | 2pm | 3pm

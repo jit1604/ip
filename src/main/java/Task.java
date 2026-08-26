@@ -23,6 +23,20 @@ public class Task {
         return this.description;
     }
 
+    public boolean isDone() {
+        return this.isDone;
+    }
+
+    /**
+     * Converts the task to a file-safe format for storage.
+     * Default implementation for base Task class (not typically used directly).
+     *
+     * @return A pipe-separated string representation of the task.
+     */
+    public String toFileFormat() {
+        return "T | " + (isDone ? "1" : "0") + " | " + description;
+    }
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
