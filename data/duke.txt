@@ -1,2 +1,5 @@
-T | 0 | buy groceries
-E | 0 | meeting | 2pm | 3pm
+D | 0 | return book | 2024-12-15
+D | 0 | submit assignment | 2024-12-15
+D | 0 | project meeting | 2024-12-20
+D | 0 | return book | 2024-12-15
+D | 0 | return book | 1980-12-21

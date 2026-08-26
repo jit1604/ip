@@ -1,4 +1,7 @@
 import java.io.File;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -164,15 +167,21 @@ public class Gunna {
                         System.out.println("     OOPS!!! The deadline time cannot be empty.");
                         System.out.println(delimiter);
                     } else {
-                        Task newTask = new Deadline(description, by);
-                        tasks.add(newTask);
+                        try {
+                            Task newTask = Deadline.createWithDateString(description, by);
+                            tasks.add(newTask);
 
-                        System.out.println(delimiter);
-                        System.out.println("     Got it. I've added this task:");
-                        System.out.println("       " + newTask);
-                        System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
-                        System.out.println(delimiter);
-                        storage.saveTasks(tasks);
+                            System.out.println(delimiter);
+                            System.out.println("     Got it. I've added this task:");
+                            System.out.println("       " + newTask);
+                            System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
+                            System.out.println(delimiter);
+                            storage.saveTasks(tasks);
+                        } catch (DateTimeParseException e) {
+                            System.out.println(delimiter);
+                            System.out.println("     OOPS!!! Invalid date format. Please use: yyyy-MM-dd (e.g., 2019-12-31)");
+                            System.out.println(delimiter);
+                        }
                     }
                 }
             } else if (command.equals("event") || command.startsWith("event ")) {
@@ -252,6 +261,46 @@ public class Gunna {
                     } catch (NumberFormatException e) {
                         System.out.println(delimiter);
                         System.out.println("     OOPS!!! Task number must be a valid number.");
+                        System.out.println(delimiter);
+                    }
+                }
+            } else if (command.equals("on") || command.startsWith("on ")) {
+                // Parse on command: on <date>
+                String dateStr = command.length() > 3 ? command.substring(3).trim() : "";
+
+                if (dateStr.isEmpty()) {
+                    System.out.println(delimiter);
+                    System.out.println("     OOPS!!! Please specify a date.");
+                    System.out.println("     Usage: on <yyyy-MM-dd>");
+                    System.out.println(delimiter);
+                } else {
+                    try {
+                        LocalDate searchDate = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+                        ArrayList<Task> matchingTasks = new ArrayList<>();
+
+                        // Find all tasks on this date
+                        for (Task task : tasks) {
+                            if (task instanceof Deadline) {
+                                Deadline deadline = (Deadline) task;
+                                if (deadline.getByDate().equals(searchDate)) {
+                                    matchingTasks.add(task);
+                                }
+                            }
+                        }
+
+                        System.out.println(delimiter);
+                        if (matchingTasks.isEmpty()) {
+                            System.out.println("     No tasks found on " + searchDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
+                        } else {
+                            System.out.println("     Here are the tasks on " + searchDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ":");
+                            for (int i = 0; i < matchingTasks.size(); i++) {
+                                System.out.println("     " + (i + 1) + "." + matchingTasks.get(i));
+                            }
+                        }
+                        System.out.println(delimiter);
+                    } catch (DateTimeParseException e) {
+                        System.out.println(delimiter);
+                        System.out.println("     OOPS!!! Invalid date format. Please use: yyyy-MM-dd (e.g., 2019-12-31)");
                         System.out.println(delimiter);
                     }
                 }
