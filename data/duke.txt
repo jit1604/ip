@@ -1,2 +1,4 @@
-D | 0 | homework | sunday 2pm
-E | 0 | dawg | sunday 2pm | sunday 6pm
+T | 1 | buy groceries
+E | 0 | meeting | 2pm | 3pm
+T | 0 | read book
+D | 0 | submit report | Friday

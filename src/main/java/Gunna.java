@@ -18,11 +18,11 @@ public class Gunna {
         System.out.println("     What can I do for you?");
         System.out.println(delimiter);
 
-        // ArrayList to store tasks (dynamic sizing)
-        ArrayList<Task> tasks = new ArrayList<>();
-
         // Storage to save/load tasks from disk
         Storage storage = new Storage("./data/duke.txt");
+
+        // Load tasks from file
+        ArrayList<Task> tasks = storage.loadTasks();
 
         Scanner scanner = new Scanner(System.in);
         String command;
