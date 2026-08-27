@@ -30,18 +30,16 @@ public class Gunna {
             } else if (command.equals("list")) {
                 ui.showTaskList(tasks.getTasks());
             } else if (command.equals("mark") || command.startsWith("mark ")) {
-                // Parse task number from "mark N"
-                String numStr = command.length() > 5 ? command.substring(5).trim() : "";
+                String argument = Parser.getArgument(command, "mark");
 
-                if (numStr.isEmpty()) {
+                if (argument.trim().isEmpty()) {
                     ui.showError("OOPS!!! Please specify which task to mark.\n     Usage: mark <task number>");
                 } else {
                     try {
-                        int taskNumber = Integer.parseInt(numStr);
-                        int taskIndex = taskNumber - 1;
+                        int taskIndex = Parser.parseTaskNumber(argument);
 
-                        if (taskIndex < 0 || taskIndex >= tasks.size()) {
-                            ui.showError("OOPS!!! Task number " + taskNumber + " doesn't exist.\n"
+                        if (taskIndex >= tasks.size()) {
+                            ui.showError("OOPS!!! Task number " + (taskIndex + 1) + " doesn't exist.\n"
                                     + "     You have " + tasks.size() + " task(s) in your list.");
                         } else {
                             tasks.mark(taskIndex);
@@ -50,21 +48,22 @@ public class Gunna {
                         }
                     } catch (NumberFormatException e) {
                         ui.showError("OOPS!!! Task number must be a valid number.");
+                    } catch (IndexOutOfBoundsException e) {
+                        ui.showError("OOPS!!! Task number " + argument.trim() + " doesn't exist.\n"
+                                + "     You have " + tasks.size() + " task(s) in your list.");
                     }
                 }
             } else if (command.equals("unmark") || command.startsWith("unmark ")) {
-                // Parse task number from "unmark N"
-                String numStr = command.length() > 7 ? command.substring(7).trim() : "";
+                String argument = Parser.getArgument(command, "unmark");
 
-                if (numStr.isEmpty()) {
+                if (argument.trim().isEmpty()) {
                     ui.showError("OOPS!!! Please specify which task to unmark.\n     Usage: unmark <task number>");
                 } else {
                     try {
-                        int taskNumber = Integer.parseInt(numStr);
-                        int taskIndex = taskNumber - 1;
+                        int taskIndex = Parser.parseTaskNumber(argument);
 
-                        if (taskIndex < 0 || taskIndex >= tasks.size()) {
-                            ui.showError("OOPS!!! Task number " + taskNumber + " doesn't exist.\n"
+                        if (taskIndex >= tasks.size()) {
+                            ui.showError("OOPS!!! Task number " + (taskIndex + 1) + " doesn't exist.\n"
                                     + "     You have " + tasks.size() + " task(s) in your list.");
                         } else {
                             tasks.unmark(taskIndex);
@@ -73,11 +72,13 @@ public class Gunna {
                         }
                     } catch (NumberFormatException e) {
                         ui.showError("OOPS!!! Task number must be a valid number.");
+                    } catch (IndexOutOfBoundsException e) {
+                        ui.showError("OOPS!!! Task number " + argument.trim() + " doesn't exist.\n"
+                                + "     You have " + tasks.size() + " task(s) in your list.");
                     }
                 }
             } else if (command.equals("todo") || command.startsWith("todo ")) {
-                // Parse todo command
-                String description = command.length() > 5 ? command.substring(5).trim() : "";
+                String description = Parser.parseTodo(command);
 
                 if (description.isEmpty()) {
                     ui.showError("OOPS!!! The description of a todo cannot be empty.");
@@ -88,27 +89,13 @@ public class Gunna {
                     storage.saveTasks(tasks.getTasks());
                 }
             } else if (command.equals("deadline") || command.startsWith("deadline ")) {
-                // Parse deadline command: deadline <description> /by <time>
-                String remaining = command.length() > 9 ? command.substring(9) : "";
-                int byIndex = remaining.indexOf(" /by ");
-                boolean hasTrailingSpace = true;
+                String[] parts = Parser.parseDeadline(command);
 
-                // Also check for /by at the end without trailing space
-                if (byIndex == -1 && remaining.endsWith(" /by")) {
-                    byIndex = remaining.lastIndexOf(" /by");
-                    hasTrailingSpace = false;
-                }
-
-                if (byIndex == -1) {
+                if (parts == null) {
                     ui.showError("OOPS!!! Please use the format: deadline <description> /by <time>");
                 } else {
-                    String description = remaining.substring(0, byIndex).trim();
-                    String by;
-                    if (hasTrailingSpace) {
-                        by = remaining.substring(byIndex + 5).trim();
-                    } else {
-                        by = remaining.substring(byIndex + 4).trim();  // " /by" is 4 chars
-                    }
+                    String description = parts[0];
+                    String by = parts[1];
 
                     if (description.isEmpty()) {
                         ui.showError("OOPS!!! The description of a deadline cannot be empty.");
@@ -126,28 +113,14 @@ public class Gunna {
                     }
                 }
             } else if (command.equals("event") || command.startsWith("event ")) {
-                // Parse event command: event <description> /from <time> /to <time>
-                String remaining = command.length() > 6 ? command.substring(6) : "";
-                int fromIndex = remaining.indexOf(" /from ");
-                int toIndex = remaining.indexOf(" /to ");
+                String[] parts = Parser.parseEvent(command);
 
-                // Check for /to without trailing space at the end
-                if (toIndex == -1 && remaining.contains(" /to")) {
-                    toIndex = remaining.lastIndexOf(" /to");
-                }
-
-                if (fromIndex == -1 || toIndex == -1 || fromIndex + 7 > toIndex) {
+                if (parts == null) {
                     ui.showError("OOPS!!! Please use the format: event <description> /from <time> /to <time>");
                 } else {
-                    String description = remaining.substring(0, fromIndex).trim();
-                    String from = remaining.substring(fromIndex + 7, toIndex).trim();
-                    String to;
-                    // Handle both " /to " and " /to" (at end without trailing space)
-                    if (remaining.indexOf(" /to ") != -1) {
-                        to = remaining.substring(toIndex + 5).trim();
-                    } else {
-                        to = remaining.substring(toIndex + 4).trim();  // " /to" is 4 chars
-                    }
+                    String description = parts[0];
+                    String from = parts[1];
+                    String to = parts[2];
 
                     if (description.isEmpty()) {
                         ui.showError("OOPS!!! The description of an event cannot be empty.");
@@ -161,18 +134,16 @@ public class Gunna {
                     }
                 }
             } else if (command.equals("delete") || command.startsWith("delete ")) {
-                // Parse delete command: delete <task number>
-                String numStr = command.length() > 7 ? command.substring(7).trim() : "";
+                String argument = Parser.getArgument(command, "delete");
 
-                if (numStr.isEmpty()) {
+                if (argument.trim().isEmpty()) {
                     ui.showError("OOPS!!! Please specify which task to delete.\n     Usage: delete <task number>");
                 } else {
                     try {
-                        int taskNumber = Integer.parseInt(numStr);
-                        int taskIndex = taskNumber - 1;
+                        int taskIndex = Parser.parseTaskNumber(argument);
 
-                        if (taskIndex < 0 || taskIndex >= tasks.size()) {
-                            ui.showError("OOPS!!! Task number " + taskNumber + " doesn't exist.\n"
+                        if (taskIndex >= tasks.size()) {
+                            ui.showError("OOPS!!! Task number " + (taskIndex + 1) + " doesn't exist.\n"
                                     + "     You have " + tasks.size() + " task(s) in your list.");
                         } else {
                             Task removedTask = tasks.delete(taskIndex);
@@ -181,11 +152,13 @@ public class Gunna {
                         }
                     } catch (NumberFormatException e) {
                         ui.showError("OOPS!!! Task number must be a valid number.");
+                    } catch (IndexOutOfBoundsException e) {
+                        ui.showError("OOPS!!! Task number " + argument.trim() + " doesn't exist.\n"
+                                + "     You have " + tasks.size() + " task(s) in your list.");
                     }
                 }
             } else if (command.equals("on") || command.startsWith("on ")) {
-                // Parse on command: on <date>
-                String dateStr = command.length() > 3 ? command.substring(3).trim() : "";
+                String dateStr = Parser.parseDate(command);
 
                 if (dateStr.isEmpty()) {
                     ui.showError("OOPS!!! Please specify a date.\n     Usage: on <yyyy-MM-dd>");
