@@ -30,9 +30,58 @@ Ensure that Java 25 is used when running the application or build tasks. On macO
 
 ## Git
 
-Use lightweight tags unless the user requests an annotated tag.
-When proposing or creating a commit message, include enough detail to explain the rationale for the change.
-Do not commit or push unless explicitly asked.
+**All Git operations must follow the SEEdu Git Conventions** from https://se-education.org/guides/conventions/git.html
+
+### Commit Message Standards
+
+**Subject Line:**
+- Length: 50 characters preferred (72 max)
+- Use imperative mood: "Add feature" not "Added feature"
+- Capitalize first letter
+- No period at end
+- Optional scope prefix: `Person class:`, `bug fix:`
+
+**Body (when needed):**
+- Separate from subject with blank line
+- Wrap at 72 characters
+- Explain WHAT and WHY, not HOW
+- Structure: current situation → why change needed → what's done → why this way → other info
+- Use imperative mood for changes
+- Provide enough detail to understand without reading diff
+
+**Example:**
+```
+Add user authentication feature
+
+Users previously had unrestricted access to all features, creating
+security risks for sensitive data.
+
+Implement JWT-based authentication with login/logout endpoints.
+Users must authenticate before accessing protected resources.
+
+JWT approach chosen over sessions for stateless scaling. Tokens
+stored in localStorage and validated on each protected route.
+
+Co-Authored-By: Claude Sonnet 4.5 <noreply@anthropic.com>
+```
+
+### Branch Naming
+
+- Use kebab-case: `add-dark-mode`, `fix-memory-leak`
+- Include meaningful keywords describing purpose
+- For issues: `issueNumber-keywords` (e.g., `123-ui-freeze-error`)
+
+### Commit Practices
+
+- **Atomic commits**: One logical change per commit
+- **Never commit**: Generated files, build artifacts, IDE configs (unless team-wide), sensitive data
+- **Always include**: Co-Authored-By line for AI assistance
+- Use lightweight tags unless annotated tag requested
+- Do not commit or push unless explicitly asked
+
+### Enforcement
+
+The `seedu-git-standard` skill can verify compliance before commits.
 
 ## Coding Standards
 
