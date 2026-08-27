@@ -2,7 +2,6 @@ import java.io.File;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 
 public class Gunna {
     public static void main(String[] args) {
@@ -18,7 +17,7 @@ public class Gunna {
         Storage storage = new Storage(filePath);
 
         // Load tasks from file
-        ArrayList<Task> tasks = storage.loadTasks();
+        TaskList tasks = new TaskList(storage.loadTasks());
 
         String command;
 
@@ -29,7 +28,7 @@ public class Gunna {
                 ui.showGoodbye();
                 break;
             } else if (command.equals("list")) {
-                ui.showTaskList(tasks);
+                ui.showTaskList(tasks.getTasks());
             } else if (command.equals("mark") || command.startsWith("mark ")) {
                 // Parse task number from "mark N"
                 String numStr = command.length() > 5 ? command.substring(5).trim() : "";
@@ -45,9 +44,9 @@ public class Gunna {
                             ui.showError("OOPS!!! Task number " + taskNumber + " doesn't exist.\n"
                                     + "     You have " + tasks.size() + " task(s) in your list.");
                         } else {
-                            tasks.get(taskIndex).markAsDone();
+                            tasks.mark(taskIndex);
                             ui.showTaskMarked(tasks.get(taskIndex));
-                            storage.saveTasks(tasks);
+                            storage.saveTasks(tasks.getTasks());
                         }
                     } catch (NumberFormatException e) {
                         ui.showError("OOPS!!! Task number must be a valid number.");
@@ -68,9 +67,9 @@ public class Gunna {
                             ui.showError("OOPS!!! Task number " + taskNumber + " doesn't exist.\n"
                                     + "     You have " + tasks.size() + " task(s) in your list.");
                         } else {
-                            tasks.get(taskIndex).markAsNotDone();
+                            tasks.unmark(taskIndex);
                             ui.showTaskUnmarked(tasks.get(taskIndex));
-                            storage.saveTasks(tasks);
+                            storage.saveTasks(tasks.getTasks());
                         }
                     } catch (NumberFormatException e) {
                         ui.showError("OOPS!!! Task number must be a valid number.");
@@ -86,7 +85,7 @@ public class Gunna {
                     Task newTask = new Todo(description);
                     tasks.add(newTask);
                     ui.showTaskAdded(newTask, tasks.size());
-                    storage.saveTasks(tasks);
+                    storage.saveTasks(tasks.getTasks());
                 }
             } else if (command.equals("deadline") || command.startsWith("deadline ")) {
                 // Parse deadline command: deadline <description> /by <time>
@@ -120,7 +119,7 @@ public class Gunna {
                             Task newTask = Deadline.createWithDateString(description, by);
                             tasks.add(newTask);
                             ui.showTaskAdded(newTask, tasks.size());
-                            storage.saveTasks(tasks);
+                            storage.saveTasks(tasks.getTasks());
                         } catch (DateTimeParseException e) {
                             ui.showError("OOPS!!! Invalid date format. Please use: yyyy-MM-dd (e.g., 2019-12-31)");
                         }
@@ -158,7 +157,7 @@ public class Gunna {
                         Task newTask = new Event(description, from, to);
                         tasks.add(newTask);
                         ui.showTaskAdded(newTask, tasks.size());
-                        storage.saveTasks(tasks);
+                        storage.saveTasks(tasks.getTasks());
                     }
                 }
             } else if (command.equals("delete") || command.startsWith("delete ")) {
@@ -176,9 +175,9 @@ public class Gunna {
                             ui.showError("OOPS!!! Task number " + taskNumber + " doesn't exist.\n"
                                     + "     You have " + tasks.size() + " task(s) in your list.");
                         } else {
-                            Task removedTask = tasks.remove(taskIndex);
+                            Task removedTask = tasks.delete(taskIndex);
                             ui.showTaskDeleted(removedTask, tasks.size());
-                            storage.saveTasks(tasks);
+                            storage.saveTasks(tasks.getTasks());
                         }
                     } catch (NumberFormatException e) {
                         ui.showError("OOPS!!! Task number must be a valid number.");
@@ -193,20 +192,8 @@ public class Gunna {
                 } else {
                     try {
                         LocalDate searchDate = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-                        ArrayList<Task> matchingTasks = new ArrayList<>();
-
-                        // Find all tasks on this date
-                        for (Task task : tasks) {
-                            if (task instanceof Deadline) {
-                                Deadline deadline = (Deadline) task;
-                                if (deadline.getByDate().equals(searchDate)) {
-                                    matchingTasks.add(task);
-                                }
-                            }
-                        }
-
                         String formattedDate = searchDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
-                        ui.showTasksOnDate(matchingTasks, formattedDate);
+                        ui.showTasksOnDate(tasks.getTasksOnDate(searchDate), formattedDate);
                     } catch (DateTimeParseException e) {
                         ui.showError("OOPS!!! Invalid date format. Please use: yyyy-MM-dd (e.g., 2019-12-31)");
                     }
