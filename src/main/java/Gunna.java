@@ -3,24 +3,14 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.ArrayList;
-import java.util.Scanner;
 
 public class Gunna {
     public static void main(String[] args) {
-        String banner =
-                "    ____                         \n"
-                + " / ___|_   _ _ __  _ __   __ _ \n"
-                + "| |  _| | | | '_ \\| '_ \\ / _` |\n"
-                + "| |_| | |_| | | | | | | | (_| |\n"
-                + " \\____|\\__,_|_| |_|_| |_|\\__,_|\n";
+        // Initialize UI for user interactions
+        Ui ui = new Ui();
 
-        String delimiter = "____________________________________________________________";
-
-        System.out.println(delimiter);
-        System.out.println(banner);
-        System.out.println("     Hello! I'm GUNNA.");
-        System.out.println("     What can I do for you?");
-        System.out.println(delimiter);
+        // Show welcome message
+        ui.showWelcome();
 
         // Storage to save/load tasks from disk
         // Using OS-independent path construction with relative path
@@ -30,55 +20,37 @@ public class Gunna {
         // Load tasks from file
         ArrayList<Task> tasks = storage.loadTasks();
 
-        Scanner scanner = new Scanner(System.in);
         String command;
 
         while (true) {
-            command = scanner.nextLine();
+            command = ui.readCommand();
 
             if (command.equals("bye")) {
-                System.out.println(delimiter);
-                System.out.println("     Bye. Hope to see you again soon!");
-                System.out.println(delimiter);
+                ui.showGoodbye();
                 break;
             } else if (command.equals("list")) {
-                System.out.println(delimiter);
-                System.out.println("     Here are the tasks in your list:");
-                for (int i = 0; i < tasks.size(); i++) {
-                    System.out.println("     " + (i + 1) + "." + tasks.get(i));
-                }
-                System.out.println(delimiter);
+                ui.showTaskList(tasks);
             } else if (command.equals("mark") || command.startsWith("mark ")) {
                 // Parse task number from "mark N"
                 String numStr = command.length() > 5 ? command.substring(5).trim() : "";
 
                 if (numStr.isEmpty()) {
-                    System.out.println(delimiter);
-                    System.out.println("     OOPS!!! Please specify which task to mark.");
-                    System.out.println("     Usage: mark <task number>");
-                    System.out.println(delimiter);
+                    ui.showError("OOPS!!! Please specify which task to mark.\n     Usage: mark <task number>");
                 } else {
                     try {
                         int taskNumber = Integer.parseInt(numStr);
                         int taskIndex = taskNumber - 1;
 
                         if (taskIndex < 0 || taskIndex >= tasks.size()) {
-                            System.out.println(delimiter);
-                            System.out.println("     OOPS!!! Task number " + taskNumber + " doesn't exist.");
-                            System.out.println("     You have " + tasks.size() + " task(s) in your list.");
-                            System.out.println(delimiter);
+                            ui.showError("OOPS!!! Task number " + taskNumber + " doesn't exist.\n"
+                                    + "     You have " + tasks.size() + " task(s) in your list.");
                         } else {
                             tasks.get(taskIndex).markAsDone();
-                            System.out.println(delimiter);
-                            System.out.println("     Nice! I've marked this task as done:");
-                            System.out.println("       " + tasks.get(taskIndex));
-                            System.out.println(delimiter);
+                            ui.showTaskMarked(tasks.get(taskIndex));
                             storage.saveTasks(tasks);
                         }
                     } catch (NumberFormatException e) {
-                        System.out.println(delimiter);
-                        System.out.println("     OOPS!!! Task number must be a valid number.");
-                        System.out.println(delimiter);
+                        ui.showError("OOPS!!! Task number must be a valid number.");
                     }
                 }
             } else if (command.equals("unmark") || command.startsWith("unmark ")) {
@@ -86,32 +58,22 @@ public class Gunna {
                 String numStr = command.length() > 7 ? command.substring(7).trim() : "";
 
                 if (numStr.isEmpty()) {
-                    System.out.println(delimiter);
-                    System.out.println("     OOPS!!! Please specify which task to unmark.");
-                    System.out.println("     Usage: unmark <task number>");
-                    System.out.println(delimiter);
+                    ui.showError("OOPS!!! Please specify which task to unmark.\n     Usage: unmark <task number>");
                 } else {
                     try {
                         int taskNumber = Integer.parseInt(numStr);
                         int taskIndex = taskNumber - 1;
 
                         if (taskIndex < 0 || taskIndex >= tasks.size()) {
-                            System.out.println(delimiter);
-                            System.out.println("     OOPS!!! Task number " + taskNumber + " doesn't exist.");
-                            System.out.println("     You have " + tasks.size() + " task(s) in your list.");
-                            System.out.println(delimiter);
+                            ui.showError("OOPS!!! Task number " + taskNumber + " doesn't exist.\n"
+                                    + "     You have " + tasks.size() + " task(s) in your list.");
                         } else {
                             tasks.get(taskIndex).markAsNotDone();
-                            System.out.println(delimiter);
-                            System.out.println("     OK, I've marked this task as not done yet:");
-                            System.out.println("       " + tasks.get(taskIndex));
-                            System.out.println(delimiter);
+                            ui.showTaskUnmarked(tasks.get(taskIndex));
                             storage.saveTasks(tasks);
                         }
                     } catch (NumberFormatException e) {
-                        System.out.println(delimiter);
-                        System.out.println("     OOPS!!! Task number must be a valid number.");
-                        System.out.println(delimiter);
+                        ui.showError("OOPS!!! Task number must be a valid number.");
                     }
                 }
             } else if (command.equals("todo") || command.startsWith("todo ")) {
@@ -119,18 +81,11 @@ public class Gunna {
                 String description = command.length() > 5 ? command.substring(5).trim() : "";
 
                 if (description.isEmpty()) {
-                    System.out.println(delimiter);
-                    System.out.println("     OOPS!!! The description of a todo cannot be empty.");
-                    System.out.println(delimiter);
+                    ui.showError("OOPS!!! The description of a todo cannot be empty.");
                 } else {
                     Task newTask = new Todo(description);
                     tasks.add(newTask);
-
-                    System.out.println(delimiter);
-                    System.out.println("     Got it. I've added this task:");
-                    System.out.println("       " + newTask);
-                    System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
-                    System.out.println(delimiter);
+                    ui.showTaskAdded(newTask, tasks.size());
                     storage.saveTasks(tasks);
                 }
             } else if (command.equals("deadline") || command.startsWith("deadline ")) {
@@ -146,9 +101,7 @@ public class Gunna {
                 }
 
                 if (byIndex == -1) {
-                    System.out.println(delimiter);
-                    System.out.println("     OOPS!!! Please use the format: deadline <description> /by <time>");
-                    System.out.println(delimiter);
+                    ui.showError("OOPS!!! Please use the format: deadline <description> /by <time>");
                 } else {
                     String description = remaining.substring(0, byIndex).trim();
                     String by;
@@ -159,28 +112,17 @@ public class Gunna {
                     }
 
                     if (description.isEmpty()) {
-                        System.out.println(delimiter);
-                        System.out.println("     OOPS!!! The description of a deadline cannot be empty.");
-                        System.out.println(delimiter);
+                        ui.showError("OOPS!!! The description of a deadline cannot be empty.");
                     } else if (by.isEmpty()) {
-                        System.out.println(delimiter);
-                        System.out.println("     OOPS!!! The deadline time cannot be empty.");
-                        System.out.println(delimiter);
+                        ui.showError("OOPS!!! The deadline time cannot be empty.");
                     } else {
                         try {
                             Task newTask = Deadline.createWithDateString(description, by);
                             tasks.add(newTask);
-
-                            System.out.println(delimiter);
-                            System.out.println("     Got it. I've added this task:");
-                            System.out.println("       " + newTask);
-                            System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
-                            System.out.println(delimiter);
+                            ui.showTaskAdded(newTask, tasks.size());
                             storage.saveTasks(tasks);
                         } catch (DateTimeParseException e) {
-                            System.out.println(delimiter);
-                            System.out.println("     OOPS!!! Invalid date format. Please use: yyyy-MM-dd (e.g., 2019-12-31)");
-                            System.out.println(delimiter);
+                            ui.showError("OOPS!!! Invalid date format. Please use: yyyy-MM-dd (e.g., 2019-12-31)");
                         }
                     }
                 }
@@ -196,9 +138,7 @@ public class Gunna {
                 }
 
                 if (fromIndex == -1 || toIndex == -1 || fromIndex + 7 > toIndex) {
-                    System.out.println(delimiter);
-                    System.out.println("     OOPS!!! Please use the format: event <description> /from <time> /to <time>");
-                    System.out.println(delimiter);
+                    ui.showError("OOPS!!! Please use the format: event <description> /from <time> /to <time>");
                 } else {
                     String description = remaining.substring(0, fromIndex).trim();
                     String from = remaining.substring(fromIndex + 7, toIndex).trim();
@@ -211,22 +151,13 @@ public class Gunna {
                     }
 
                     if (description.isEmpty()) {
-                        System.out.println(delimiter);
-                        System.out.println("     OOPS!!! The description of an event cannot be empty.");
-                        System.out.println(delimiter);
+                        ui.showError("OOPS!!! The description of an event cannot be empty.");
                     } else if (from.isEmpty() || to.isEmpty()) {
-                        System.out.println(delimiter);
-                        System.out.println("     OOPS!!! The event time cannot be empty.");
-                        System.out.println(delimiter);
+                        ui.showError("OOPS!!! The event time cannot be empty.");
                     } else {
                         Task newTask = new Event(description, from, to);
                         tasks.add(newTask);
-
-                        System.out.println(delimiter);
-                        System.out.println("     Got it. I've added this task:");
-                        System.out.println("       " + newTask);
-                        System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
-                        System.out.println(delimiter);
+                        ui.showTaskAdded(newTask, tasks.size());
                         storage.saveTasks(tasks);
                     }
                 }
@@ -235,33 +166,22 @@ public class Gunna {
                 String numStr = command.length() > 7 ? command.substring(7).trim() : "";
 
                 if (numStr.isEmpty()) {
-                    System.out.println(delimiter);
-                    System.out.println("     OOPS!!! Please specify which task to delete.");
-                    System.out.println("     Usage: delete <task number>");
-                    System.out.println(delimiter);
+                    ui.showError("OOPS!!! Please specify which task to delete.\n     Usage: delete <task number>");
                 } else {
                     try {
                         int taskNumber = Integer.parseInt(numStr);
                         int taskIndex = taskNumber - 1;
 
                         if (taskIndex < 0 || taskIndex >= tasks.size()) {
-                            System.out.println(delimiter);
-                            System.out.println("     OOPS!!! Task number " + taskNumber + " doesn't exist.");
-                            System.out.println("     You have " + tasks.size() + " task(s) in your list.");
-                            System.out.println(delimiter);
+                            ui.showError("OOPS!!! Task number " + taskNumber + " doesn't exist.\n"
+                                    + "     You have " + tasks.size() + " task(s) in your list.");
                         } else {
                             Task removedTask = tasks.remove(taskIndex);
-                            System.out.println(delimiter);
-                            System.out.println("     Noted. I've removed this task:");
-                            System.out.println("       " + removedTask);
-                            System.out.println("     Now you have " + tasks.size() + " tasks in the list.");
-                            System.out.println(delimiter);
+                            ui.showTaskDeleted(removedTask, tasks.size());
                             storage.saveTasks(tasks);
                         }
                     } catch (NumberFormatException e) {
-                        System.out.println(delimiter);
-                        System.out.println("     OOPS!!! Task number must be a valid number.");
-                        System.out.println(delimiter);
+                        ui.showError("OOPS!!! Task number must be a valid number.");
                     }
                 }
             } else if (command.equals("on") || command.startsWith("on ")) {
@@ -269,10 +189,7 @@ public class Gunna {
                 String dateStr = command.length() > 3 ? command.substring(3).trim() : "";
 
                 if (dateStr.isEmpty()) {
-                    System.out.println(delimiter);
-                    System.out.println("     OOPS!!! Please specify a date.");
-                    System.out.println("     Usage: on <yyyy-MM-dd>");
-                    System.out.println(delimiter);
+                    ui.showError("OOPS!!! Please specify a date.\n     Usage: on <yyyy-MM-dd>");
                 } else {
                     try {
                         LocalDate searchDate = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -288,29 +205,17 @@ public class Gunna {
                             }
                         }
 
-                        System.out.println(delimiter);
-                        if (matchingTasks.isEmpty()) {
-                            System.out.println("     No tasks found on " + searchDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")));
-                        } else {
-                            System.out.println("     Here are the tasks on " + searchDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy")) + ":");
-                            for (int i = 0; i < matchingTasks.size(); i++) {
-                                System.out.println("     " + (i + 1) + "." + matchingTasks.get(i));
-                            }
-                        }
-                        System.out.println(delimiter);
+                        String formattedDate = searchDate.format(DateTimeFormatter.ofPattern("MMM dd yyyy"));
+                        ui.showTasksOnDate(matchingTasks, formattedDate);
                     } catch (DateTimeParseException e) {
-                        System.out.println(delimiter);
-                        System.out.println("     OOPS!!! Invalid date format. Please use: yyyy-MM-dd (e.g., 2019-12-31)");
-                        System.out.println(delimiter);
+                        ui.showError("OOPS!!! Invalid date format. Please use: yyyy-MM-dd (e.g., 2019-12-31)");
                     }
                 }
             } else {
-                System.out.println(delimiter);
-                System.out.println("     OOPS!!! I'm sorry, but I don't know what that means :-(");
-                System.out.println(delimiter);
+                ui.showError("OOPS!!! I'm sorry, but I don't know what that means :-(");
             }
         }
 
-        scanner.close();
+        ui.close();
     }
 }
