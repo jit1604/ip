@@ -34,6 +34,43 @@ Use lightweight tags unless the user requests an annotated tag.
 When proposing or creating a commit message, include enough detail to explain the rationale for the change.
 Do not commit or push unless explicitly asked.
 
+## Coding Standards
+
+**All Java code must follow the SEEdu Java Coding Standard (Intermediate Level)** from https://se-education.org/guides/conventions/java/intermediate.html
+
+### Key Requirements
+
+**Naming:**
+- Classes: PascalCase nouns (e.g., `Task`, `TodoCommand`)
+- Methods: camelCase verbs (e.g., `getTasks()`, `markAsDone()`)
+- Variables: camelCase (e.g., `taskList`, `description`)
+- Constants: UPPER_CASE_WITH_UNDERSCORES (e.g., `MAX_TASKS`)
+- Boolean methods/variables: Use `is`, `has`, `was` prefix (e.g., `isDone()`, `hasNext()`)
+- Collections: Plural forms (e.g., `List<Task> tasks`)
+
+**Formatting:**
+- Indentation: 4 spaces (never tabs)
+- Line length: Soft limit 110 characters, hard limit 120 characters
+- Braces: K&R/Egyptian style (opening brace on same line)
+- Always use braces for if/for/while, even single-statement blocks
+
+**Code Structure:**
+- No wildcard imports (use explicit imports like `import java.util.ArrayList;`)
+- Variables should be private unless it's a data class; provide getters/setters
+- Arrays: `int[] array` not `int array[]`
+- Initialize variables where declared
+
+**Documentation:**
+- JavaDoc required for all public classes and methods (except simple getters/setters, overridden methods with same semantics, test classes)
+- Use American English spelling in all comments
+
+### Enforcement
+
+When writing or modifying Java code:
+1. Follow all SEEdu coding standards
+2. Check compliance before committing
+3. The `seedu-java-coding-standard` skill can be used to verify compliance
+
 ## Testing
 
 ### Test Coverage Target
