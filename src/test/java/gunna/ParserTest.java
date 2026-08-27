@@ -9,6 +9,7 @@ import gunna.command.FindCommand;
 import gunna.command.InvalidCommand;
 import gunna.command.ListCommand;
 import gunna.command.MarkCommand;
+import gunna.command.SearchCommand;
 import gunna.command.TodoCommand;
 import gunna.command.UnmarkCommand;
 import org.junit.jupiter.api.Test;
@@ -288,6 +289,36 @@ public class ParserTest {
         Command command = Parser.parse("on   2024-06-15");
         assertTrue(command instanceof FindCommand,
                 "Parsing 'on' with extra spaces should return FindCommand");
+    }
+
+    // Test search/find command parsing
+
+    @Test
+    public void parse_findWithKeyword_returnsSearchCommand() throws DukeException {
+        Command command = Parser.parse("find book");
+        assertTrue(command instanceof SearchCommand,
+                "Parsing 'find book' should return SearchCommand");
+    }
+
+    @Test
+    public void parse_findWithoutKeyword_returnsSearchCommand() throws DukeException {
+        Command command = Parser.parse("find");
+        assertTrue(command instanceof SearchCommand,
+                "Parsing 'find' without keyword should return SearchCommand (with empty keyword)");
+    }
+
+    @Test
+    public void parse_findWithSpaces_returnsSearchCommand() throws DukeException {
+        Command command = Parser.parse("find   book");
+        assertTrue(command instanceof SearchCommand,
+                "Parsing 'find' with extra spaces should return SearchCommand");
+    }
+
+    @Test
+    public void parse_findWithMultipleWords_returnsSearchCommand() throws DukeException {
+        Command command = Parser.parse("find read book");
+        assertTrue(command instanceof SearchCommand,
+                "Parsing 'find' with multiple words should return SearchCommand");
     }
 
     // Test edge cases

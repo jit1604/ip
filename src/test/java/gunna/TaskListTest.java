@@ -287,4 +287,58 @@ public class TaskListTest {
         taskList.unmark(0);
         assertFalse(taskList.get(0).isDone(), "Task should remain not done after multiple unmarks");
     }
+
+    @Test
+    public void findTasksByKeyword_noMatches_returnsEmptyList() {
+        taskList.add(todo);
+        taskList.add(deadline);
+        ArrayList<Task> found = taskList.findTasksByKeyword("xyz");
+        assertEquals(0, found.size(), "Should return empty list when no tasks match");
+    }
+
+    @Test
+    public void findTasksByKeyword_singleMatch_returnsMatchingTask() {
+        taskList.add(new Todo("read book"));
+        taskList.add(new Todo("buy groceries"));
+        ArrayList<Task> found = taskList.findTasksByKeyword("book");
+        assertEquals(1, found.size(), "Should find one matching task");
+        assertTrue(found.get(0).getDescription().contains("book"));
+    }
+
+    @Test
+    public void findTasksByKeyword_multipleMatches_returnsAllMatches() {
+        taskList.add(new Todo("read book"));
+        taskList.add(new Deadline("return book", LocalDate.of(2024, 6, 15)));
+        taskList.add(new Todo("buy groceries"));
+        ArrayList<Task> found = taskList.findTasksByKeyword("book");
+        assertEquals(2, found.size(), "Should find two matching tasks");
+    }
+
+    @Test
+    public void findTasksByKeyword_caseInsensitive_findsMatch() {
+        taskList.add(new Todo("Read Book"));
+        ArrayList<Task> found = taskList.findTasksByKeyword("book");
+        assertEquals(1, found.size(), "Should find match regardless of case");
+    }
+
+    @Test
+    public void findTasksByKeyword_partialMatch_findsMatch() {
+        taskList.add(new Todo("reading books at library"));
+        ArrayList<Task> found = taskList.findTasksByKeyword("book");
+        assertEquals(1, found.size(), "Should find partial match");
+    }
+
+    @Test
+    public void findTasksByKeyword_emptyList_returnsEmptyList() {
+        ArrayList<Task> found = taskList.findTasksByKeyword("book");
+        assertEquals(0, found.size(), "Should return empty list when task list is empty");
+    }
+
+    @Test
+    public void findTasksByKeyword_emptyKeyword_returnsAllTasks() {
+        taskList.add(todo);
+        taskList.add(deadline);
+        ArrayList<Task> found = taskList.findTasksByKeyword("");
+        assertEquals(2, found.size(), "Empty keyword should match all tasks");
+    }
 }
