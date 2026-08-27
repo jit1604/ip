@@ -117,4 +117,22 @@ public class TaskList {
         }
         return matchingTasks;
     }
+
+    /**
+     * Finds and returns all tasks whose descriptions contain the given keyword.
+     * The search is case-insensitive.
+     *
+     * @param keyword The keyword to search for in task descriptions.
+     * @return A list of tasks whose descriptions contain the keyword.
+     */
+    public ArrayList<Task> findTasksByKeyword(String keyword) {
+        ArrayList<Task> matchingTasks = new ArrayList<>();
+        String lowerKeyword = keyword.toLowerCase();
+        for (Task task : tasks) {
+            if (task.getDescription().toLowerCase().contains(lowerKeyword)) {
+                matchingTasks.add(task);
+            }
+        }
+        return matchingTasks;
+    }
 }

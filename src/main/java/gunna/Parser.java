@@ -9,6 +9,7 @@ import gunna.command.FindCommand;
 import gunna.command.InvalidCommand;
 import gunna.command.ListCommand;
 import gunna.command.MarkCommand;
+import gunna.command.SearchCommand;
 import gunna.command.TodoCommand;
 import gunna.command.UnmarkCommand;
 
@@ -42,6 +43,8 @@ public class Parser {
             return parseDeadlineCommand(fullCommand);
         } else if (fullCommand.equals("event") || fullCommand.startsWith("event ")) {
             return parseEventCommand(fullCommand);
+        } else if (fullCommand.equals("find") || fullCommand.startsWith("find ")) {
+            return parseSearchCommand(fullCommand);
         } else if (fullCommand.equals("on") || fullCommand.startsWith("on ")) {
             return parseFindCommand(fullCommand);
         } else {
@@ -263,6 +266,17 @@ public class Parser {
             throw new DukeException("OOPS!!! Please use the format: event <description> /from <time> /to <time>");
         }
         return new EventCommand(parts[0], parts[1], parts[2]);
+    }
+
+    /**
+     * Parses a search command (find command).
+     *
+     * @param fullCommand The full find command string.
+     * @return A SearchCommand object.
+     */
+    private static Command parseSearchCommand(String fullCommand) {
+        String keyword = getArgument(fullCommand, "find").trim();
+        return new SearchCommand(keyword);
     }
 
     /**
