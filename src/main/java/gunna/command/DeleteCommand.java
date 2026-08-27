@@ -1,20 +1,27 @@
+package gunna.command;
+
+import gunna.DukeException;
+import gunna.Storage;
+import gunna.TaskList;
+import gunna.Ui;
+import gunna.task.Task;
 /**
- * Represents a command to unmark a task (mark as not done).
+ * Represents a command to delete a task.
  */
-public class UnmarkCommand extends Command {
+public class DeleteCommand extends Command {
     private int taskIndex;
 
     /**
-     * Constructs an UnmarkCommand with the specified task index.
+     * Constructs a DeleteCommand with the specified task index.
      *
-     * @param taskIndex The 0-based index of the task to unmark.
+     * @param taskIndex The 0-based index of the task to delete.
      */
-    public UnmarkCommand(int taskIndex) {
+    public DeleteCommand(int taskIndex) {
         this.taskIndex = taskIndex;
     }
 
     /**
-     * Executes the unmark command by marking the specified task as not done.
+     * Executes the delete command by removing the specified task.
      *
      * @param tasks The task list containing the task.
      * @param ui The UI to display success message.
@@ -27,8 +34,8 @@ public class UnmarkCommand extends Command {
             throw new DukeException("OOPS!!! Task number " + (taskIndex + 1) + " doesn't exist.\n"
                     + "     You have " + tasks.size() + " task(s) in your list.");
         }
-        tasks.unmark(taskIndex);
-        ui.showTaskUnmarked(tasks.get(taskIndex));
+        Task removedTask = tasks.delete(taskIndex);
+        ui.showTaskDeleted(removedTask, tasks.size());
         storage.saveTasks(tasks.getTasks());
     }
 }

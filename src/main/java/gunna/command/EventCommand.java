@@ -1,3 +1,12 @@
+package gunna.command;
+
+import gunna.DukeException;
+import gunna.Storage;
+import gunna.TaskList;
+import gunna.Ui;
+import gunna.task.Event;
+import gunna.task.Task;
+
 /**
  * Represents a command to add an event task.
  */

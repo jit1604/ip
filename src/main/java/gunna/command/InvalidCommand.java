@@ -1,3 +1,9 @@
+package gunna.command;
+
+import gunna.DukeException;
+import gunna.Storage;
+import gunna.TaskList;
+import gunna.Ui;
 /**
  * Represents an invalid or unknown command.
  */

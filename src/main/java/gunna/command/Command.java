@@ -1,3 +1,10 @@
+package gunna.command;
+
+import gunna.DukeException;
+import gunna.Storage;
+import gunna.TaskList;
+import gunna.Ui;
+
 /**
  * Represents an executable command in the Gunna application.
  * Commands encapsulate the logic for processing user input.

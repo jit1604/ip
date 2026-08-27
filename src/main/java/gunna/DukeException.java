@@ -1,3 +1,5 @@
+package gunna;
+
 /**
  * Represents exceptions specific to the Gunna application.
  * Used to signal errors in command processing, task operations, etc.
