@@ -1,3 +1,6 @@
+package gunna;
+
+import gunna.command.Command;
 import java.io.File;
 
 /**

@@ -1,3 +1,6 @@
+package gunna;
+
+import gunna.task.Task;
 import java.util.ArrayList;
 import java.util.Scanner;
 
