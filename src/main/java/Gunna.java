@@ -3,21 +3,32 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 
+/**
+ * Main class for the Gunna task management application.
+ * Coordinates the UI, storage, and task list components.
+ */
 public class Gunna {
-    public static void main(String[] args) {
-        // Initialize UI for user interactions
-        Ui ui = new Ui();
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
 
-        // Show welcome message
+    /**
+     * Constructs a Gunna instance with the specified file path for data storage.
+     *
+     * @param filePath The path to the data file for saving/loading tasks.
+     */
+    public Gunna(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        tasks = new TaskList(storage.loadTasks());
+    }
+
+    /**
+     * Runs the main command loop of the application.
+     * Displays welcome message, processes commands, and handles user interaction.
+     */
+    public void run() {
         ui.showWelcome();
-
-        // Storage to save/load tasks from disk
-        // Using OS-independent path construction with relative path
-        String filePath = "data" + File.separator + "duke.txt";
-        Storage storage = new Storage(filePath);
-
-        // Load tasks from file
-        TaskList tasks = new TaskList(storage.loadTasks());
 
         String command;
 
@@ -177,5 +188,15 @@ public class Gunna {
         }
 
         ui.close();
+    }
+
+    /**
+     * Main entry point for the application.
+     *
+     * @param args Command-line arguments (not used).
+     */
+    public static void main(String[] args) {
+        String filePath = "data" + File.separator + "duke.txt";
+        new Gunna(filePath).run();
     }
 }
