@@ -44,6 +44,13 @@ public class Ui {
     }
 
     /**
+     * Displays the delimiter line.
+     */
+    public void showLine() {
+        System.out.println(DELIMITER);
+    }
+
+    /**
      * Reads a command from the user.
      *
      * @return The command entered by the user.
