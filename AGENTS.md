@@ -36,7 +36,34 @@ Do not commit or push unless explicitly asked.
 
 ## Testing
 
-After making any code changes to the application (especially to Gunna.java or task-related classes):
+### Test Coverage Target
+
+Maintain **~50% test coverage** focusing on the **highest-value methods**:
+- Prioritize complex business logic, core functionality, and critical operations
+- Focus on methods with multiple branches, edge cases, or error handling
+- Avoid testing simple getters/setters unless they contain important logic
+- Examples of high-value methods: command execution, parsing, storage operations, task list management
+
+### JUnit Testing
+
+After making any code changes to the application (especially to Gunna.java, task-related classes, command classes, Storage, Parser, or TaskList):
+
+1. **Update JUnit tests**: Add or modify JUnit tests in `src/test/java/` to maintain the 50% coverage target for highest-value methods:
+   - If you add new business logic, create corresponding test cases
+   - If you modify existing methods, update their tests
+   - If you add edge cases, add tests for those scenarios
+   - Test files should mirror the structure: `src/main/java/gunna/Foo.java` → `src/test/java/gunna/FooTest.java`
+
+2. **Run JUnit tests**: Execute all JUnit tests using:
+   ```bash
+   ./gradlew test
+   ```
+
+3. **Fix failures immediately**: If any JUnit tests fail, fix the issues before proceeding. Do not leave the codebase in a broken state.
+
+### UI Testing
+
+After making any code changes that affect user-facing behavior:
 
 1. **Update test plan**: Review and update `test/ui-test-plan.md` if the code changes affect user-facing behavior or add new features. Add new test cases for new functionality or modify existing ones if behavior changed.
 
@@ -45,16 +72,19 @@ After making any code changes to the application (especially to Gunna.java or ta
    python3 .claude/skills/test-ui/scripts/run-ui-tests.py
    ```
 
-3. **Fix failures immediately**: If any tests fail, fix the issues before proceeding. Do not leave the codebase in a broken state.
+3. **Fix failures immediately**: If any UI tests fail, fix the issues before proceeding.
 
-4. **Report results**: Always show the user the test results, including:
-   - Number of tests passed/failed
-   - Details of any failures
-   - The console input/output for transparency
+### Test Reporting
 
-**When to skip testing:**
+Always show the user the test results, including:
+- Number of tests passed/failed
+- Details of any failures
+- The console input/output for transparency
+
+### When to Skip Testing
+
 - Documentation-only changes (README, comments)
 - Configuration file changes that don't affect functionality
-- Test file updates themselves
+- Test file updates themselves (but still run tests to verify they pass)
 
-**IMPORTANT**: Always run tests before committing code changes to ensure the application works as expected.
+**IMPORTANT**: Always run both JUnit and UI tests before committing code changes to ensure the application works as expected and maintains the coverage target.
