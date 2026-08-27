@@ -35,26 +35,51 @@ public class Deadline extends Task {
         return new Deadline(description, by);
     }
 
+    /**
+     * Returns the deadline date as a LocalDate object.
+     *
+     * @return The deadline date.
+     */
     public LocalDate getByDate() {
         return this.by;
     }
 
+    /**
+     * Returns the deadline date formatted for display.
+     * Format: MMM dd yyyy (e.g., "Dec 25 2024")
+     *
+     * @return The formatted deadline date string.
+     */
     public String getBy() {
         return this.by.format(OUTPUT_FORMAT);
     }
 
     /**
      * Returns the date in storage format (yyyy-MM-dd).
+     *
+     * @return The deadline date in yyyy-MM-dd format.
      */
     public String getByForStorage() {
         return this.by.format(INPUT_FORMAT);
     }
 
+    /**
+     * Converts the deadline task to a file-safe format for storage.
+     * Format: D | status | description | date
+     *
+     * @return A pipe-separated string representation of the deadline task.
+     */
     @Override
     public String toFileFormat() {
         return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + by.format(INPUT_FORMAT);
     }
 
+    /**
+     * Returns a string representation of the deadline task for display.
+     * Format: [D][status icon] description (by: formatted date)
+     *
+     * @return The string representation of the deadline task.
+     */
     @Override
     public String toString() {
         return "[D]" + super.toString() + " (by: " + by.format(OUTPUT_FORMAT) + ")";
