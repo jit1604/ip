@@ -17,9 +17,10 @@ public abstract class Command {
      * @param tasks The task list to operate on.
      * @param ui The UI to display messages to the user.
      * @param storage The storage to save/load tasks.
+     * @return The response message to display to the user.
      * @throws DukeException If an error occurs during command execution.
      */
-    public abstract void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
+    public abstract String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
     /**
      * Returns whether this command should cause the application to exit.

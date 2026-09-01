@@ -18,7 +18,7 @@ public class InvalidCommand extends Command {
      * @throws DukeException Always throws with an unknown command message.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
     }
 }

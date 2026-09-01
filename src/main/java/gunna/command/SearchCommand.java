@@ -30,10 +30,21 @@ public class SearchCommand extends Command {
      * @throws DukeException If the keyword is empty.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (keyword.isEmpty()) {
             throw new DukeException("OOPS!!! Please specify a search keyword.\n     Usage: find <keyword>");
         }
-        ui.showSearchResults(tasks.findTasksByKeyword(keyword), keyword);
+        var matchingTasks = tasks.findTasksByKeyword(keyword);
+        ui.showSearchResults(matchingTasks, keyword);
+
+        if (matchingTasks.isEmpty()) {
+            return "No matching tasks found for: " + keyword;
+        } else {
+            StringBuilder response = new StringBuilder("Here are the matching tasks in your list:");
+            for (int i = 0; i < matchingTasks.size(); i++) {
+                response.append("\n").append(i + 1).append(".").append(matchingTasks.get(i));
+            }
+            return response.toString();
+        }
     }
 }

@@ -16,7 +16,12 @@ public class ListCommand extends Command {
      * @param storage The storage (not used).
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    public String execute(TaskList tasks, Ui ui, Storage storage) {
         ui.showTaskList(tasks.getTasks());
+        StringBuilder response = new StringBuilder("Here are the tasks in your list:");
+        for (int i = 0; i < tasks.size(); i++) {
+            response.append("\n").append(i + 1).append(".").append(tasks.get(i));
+        }
+        return response.toString();
     }
 }
