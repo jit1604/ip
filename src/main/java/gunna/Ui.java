@@ -41,15 +41,27 @@ public class Ui {
      * Displays the goodbye message when the user exits.
      */
     public void showGoodbye() {
-        System.out.println(DELIMITER);
-        System.out.println("     Bye. Hope to see you again soon!");
-        System.out.println(DELIMITER);
+        showMessage("Bye. Hope to see you again soon!");
     }
 
     /**
      * Displays the delimiter line.
      */
     public void showLine() {
+        System.out.println(DELIMITER);
+    }
+
+    /**
+     * Displays a message with a variable number of lines, surrounded by delimiters.
+     * Each line is automatically indented with 5 spaces.
+     *
+     * @param lines The lines to display.
+     */
+    public void showMessage(String... lines) {
+        System.out.println(DELIMITER);
+        for (String line : lines) {
+            System.out.println("     " + line);
+        }
         System.out.println(DELIMITER);
     }
 
@@ -83,11 +95,9 @@ public class Ui {
      * @param taskCount The total number of tasks in the list.
      */
     public void showTaskAdded(Task task, int taskCount) {
-        System.out.println(DELIMITER);
-        System.out.println("     Got it. I've added this task:");
-        System.out.println("       " + task);
-        System.out.println("     Now you have " + taskCount + " tasks in the list.");
-        System.out.println(DELIMITER);
+        showMessage("Got it. I've added this task:",
+                "  " + task,
+                "Now you have " + taskCount + " tasks in the list.");
     }
 
     /**
@@ -96,10 +106,7 @@ public class Ui {
      * @param task The task that was marked as done.
      */
     public void showTaskMarked(Task task) {
-        System.out.println(DELIMITER);
-        System.out.println("     Nice! I've marked this task as done:");
-        System.out.println("       " + task);
-        System.out.println(DELIMITER);
+        showMessage("Nice! I've marked this task as done:", "  " + task);
     }
 
     /**
@@ -108,10 +115,7 @@ public class Ui {
      * @param task The task that was unmarked.
      */
     public void showTaskUnmarked(Task task) {
-        System.out.println(DELIMITER);
-        System.out.println("     OK, I've marked this task as not done yet:");
-        System.out.println("       " + task);
-        System.out.println(DELIMITER);
+        showMessage("OK, I've marked this task as not done yet:", "  " + task);
     }
 
     /**
@@ -121,11 +125,9 @@ public class Ui {
      * @param taskCount The total number of tasks remaining in the list.
      */
     public void showTaskDeleted(Task task, int taskCount) {
-        System.out.println(DELIMITER);
-        System.out.println("     Noted. I've removed this task:");
-        System.out.println("       " + task);
-        System.out.println("     Now you have " + taskCount + " tasks in the list.");
-        System.out.println(DELIMITER);
+        showMessage("Noted. I've removed this task:",
+                "  " + task,
+                "Now you have " + taskCount + " tasks in the list.");
     }
 
     /**
@@ -134,9 +136,7 @@ public class Ui {
      * @param message The error message to display.
      */
     public void showError(String message) {
-        System.out.println(DELIMITER);
-        System.out.println("     " + message);
-        System.out.println(DELIMITER);
+        showMessage(message);
     }
 
     /**
