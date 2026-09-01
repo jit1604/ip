@@ -35,7 +35,7 @@ public class DeadlineCommand extends Command {
      * @throws DukeException If the description or deadline is empty, or if the date format is invalid.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (description.isEmpty()) {
             throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
         }
@@ -47,6 +47,8 @@ public class DeadlineCommand extends Command {
             tasks.add(newTask);
             ui.showTaskAdded(newTask, tasks.size());
             storage.saveTasks(tasks.getTasks());
+            return "Got it. I've added this task:\n  " + newTask
+                    + "\nNow you have " + tasks.size() + " tasks in the list.";
         } catch (DateTimeParseException e) {
             throw new DukeException("OOPS!!! Invalid date format. Please use: yyyy-MM-dd (e.g., 2019-12-31)");
         }

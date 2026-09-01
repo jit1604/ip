@@ -29,13 +29,15 @@ public class MarkCommand extends Command {
      * @throws DukeException If the task index is out of bounds.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+    public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
             throw new DukeException("OOPS!!! Task number " + (taskIndex + 1) + " doesn't exist.\n"
                     + "     You have " + tasks.size() + " task(s) in your list.");
         }
         tasks.mark(taskIndex);
-        ui.showTaskMarked(tasks.get(taskIndex));
+        Task task = tasks.get(taskIndex);
+        ui.showTaskMarked(task);
         storage.saveTasks(tasks.getTasks());
+        return "Nice! I've marked this task as done:\n  " + task;
     }
 }

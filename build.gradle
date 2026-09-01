@@ -1,12 +1,23 @@
 plugins {
     id 'java'
     id 'application'
+    id 'checkstyle'
     id 'com.gradleup.shadow' version '9.5.1'
+    id 'org.openjfx.javafxplugin' version '0.1.0'
+}
+
+javafx {
+    version = "17.0.2"
+    modules = ['javafx.controls', 'javafx.fxml']
 }
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
+}
+
+checkstyle {
+    toolVersion = '11.0.0'
 }
 
 repositories {
@@ -37,7 +48,7 @@ test {
 }
 
 application {
-    mainClass = 'gunna.Gunna'
+    mainClass = 'Launcher'
 }
 
 jar {
@@ -50,7 +61,7 @@ jar {
 shadowJar {
     archiveFileName = 'duke.jar'
     manifest {
-        attributes 'Main-Class': 'gunna.Gunna'
+        attributes 'Main-Class': 'Launcher'
     }
 }
 

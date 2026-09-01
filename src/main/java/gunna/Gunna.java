@@ -24,6 +24,31 @@ public class Gunna {
     }
 
     /**
+     * Generates a response for the user's input.
+     * Used by the GUI to get chatbot responses.
+     *
+     * @param input The user's input command.
+     * @return The chatbot's response.
+     */
+    public String getResponse(String input) {
+        try {
+            Command c = Parser.parse(input);
+            return c.execute(tasks, ui, storage);
+        } catch (DukeException e) {
+            return e.getMessage();
+        }
+    }
+
+    /**
+     * Returns the welcome message for the application.
+     *
+     * @return The welcome message.
+     */
+    public String getWelcomeMessage() {
+        return "Hello! I'm GUNNA.\nWhat can I do for you?";
+    }
+
+    /**
      * Runs the main command loop of the application.
      * Displays welcome message, processes commands, and handles user interaction.
      */
@@ -34,7 +59,7 @@ public class Gunna {
             try {
                 String fullCommand = ui.readCommand();
                 Command c = Parser.parse(fullCommand);
-                c.execute(tasks, ui, storage);
+                String response = c.execute(tasks, ui, storage);
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
