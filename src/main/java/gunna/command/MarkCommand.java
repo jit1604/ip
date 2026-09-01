@@ -4,7 +4,6 @@ import gunna.DukeException;
 import gunna.Storage;
 import gunna.TaskList;
 import gunna.Ui;
-import gunna.task.Task;
 /**
  * Represents a command to mark a task as done.
  */

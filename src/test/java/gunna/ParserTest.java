@@ -1,5 +1,10 @@
 package gunna;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.Test;
+
 import gunna.command.Command;
 import gunna.command.DeadlineCommand;
 import gunna.command.DeleteCommand;
@@ -12,10 +17,6 @@ import gunna.command.MarkCommand;
 import gunna.command.SearchCommand;
 import gunna.command.TodoCommand;
 import gunna.command.UnmarkCommand;
-import org.junit.jupiter.api.Test;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
  * JUnit test class for testing the Parser class.
