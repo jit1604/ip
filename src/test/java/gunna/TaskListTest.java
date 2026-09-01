@@ -1,11 +1,5 @@
 package gunna;
 
-import gunna.task.Deadline;
-import gunna.task.Event;
-import gunna.task.Task;
-import gunna.task.Todo;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -13,6 +7,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import gunna.task.Deadline;
+import gunna.task.Event;
+import gunna.task.Task;
+import gunna.task.Todo;
 
 /**
  * JUnit test class for testing the TaskList class.
@@ -259,7 +261,7 @@ public class TaskListTest {
         taskList.add(todo);
         taskList.add(deadline);
         taskList.add(event);
-        taskList.delete(1);  // Delete deadline
+        taskList.delete(1); // Delete deadline
 
         Task newTodo = new Todo("New task");
         taskList.add(newTodo);

@@ -1,10 +1,11 @@
 package gunna.task;
 
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.BeforeEach;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 /**
  * JUnit test class for testing the Event class.
@@ -139,8 +140,8 @@ public class EventTest {
 
     @Test
     public void constructor_longDescription_handlesCorrectly() {
-        String longDesc = "This is a very long event description that contains many words " +
-                "and should be handled correctly by the Event class";
+        String longDesc = "This is a very long event description that contains many words "
+                + "and should be handled correctly by the Event class";
         Event longEvent = new Event(longDesc, "8am", "6pm");
         assertEquals(longDesc, longEvent.getDescription(),
                 "Event should handle long descriptions");

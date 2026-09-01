@@ -80,12 +80,12 @@ public class Parser {
      */
     private static int parseTaskNumber(String argument) throws NumberFormatException {
         int taskNumber = Integer.parseInt(argument.trim());
-        return taskNumber - 1;  // Convert to 0-based index
+        return taskNumber - 1; // Convert to 0-based index
     }
 
     /**
      * Parses a deadline command to extract description and deadline time.
-     * Format: deadline <description> /by <time>
+     * Format: deadline DESCRIPTION /by TIME
      *
      * @param command The full deadline command.
      * @return A String array [description, by], or null if format is invalid.
@@ -111,9 +111,9 @@ public class Parser {
         String description = remaining.substring(0, byIndex).trim();
         String by;
         if (hasTrailingSpace) {
-            by = remaining.substring(byIndex + 5).trim();  // " /by " is 5 chars
+            by = remaining.substring(byIndex + 5).trim(); // " /by " is 5 chars
         } else {
-            by = remaining.substring(byIndex + 4).trim();  // " /by" is 4 chars
+            by = remaining.substring(byIndex + 4).trim(); // " /by" is 4 chars
         }
 
         return new String[]{description, by};
@@ -121,7 +121,7 @@ public class Parser {
 
     /**
      * Parses an event command to extract description, from time, and to time.
-     * Format: event <description> /from <time> /to <time>
+     * Format: event DESCRIPTION /from TIME /to TIME
      *
      * @param command The full event command.
      * @return A String array [description, from, to], or null if format is invalid.
@@ -143,14 +143,14 @@ public class Parser {
         }
 
         String description = remaining.substring(0, fromIndex).trim();
-        String from = remaining.substring(fromIndex + 7, toIndex).trim();  // " /from " is 7 chars
+        String from = remaining.substring(fromIndex + 7, toIndex).trim(); // " /from " is 7 chars
         String to;
 
         // Handle both " /to " and " /to" (at end without trailing space)
         if (remaining.indexOf(" /to ") != -1) {
-            to = remaining.substring(toIndex + 5).trim();  // " /to " is 5 chars
+            to = remaining.substring(toIndex + 5).trim(); // " /to " is 5 chars
         } else {
-            to = remaining.substring(toIndex + 4).trim();  // " /to" is 4 chars
+            to = remaining.substring(toIndex + 4).trim(); // " /to" is 4 chars
         }
 
         return new String[]{description, from, to};
@@ -158,7 +158,7 @@ public class Parser {
 
     /**
      * Extracts the date string from an "on" command.
-     * Format: on <date>
+     * Format: on DATE
      *
      * @param command The full on command.
      * @return The date string (trimmed).
@@ -292,7 +292,7 @@ public class Parser {
 
     /**
      * Extracts the description from a todo command.
-     * Format: todo <description>
+     * Format: todo DESCRIPTION
      *
      * @param command The full todo command.
      * @return The todo description (trimmed).

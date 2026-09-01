@@ -1,17 +1,18 @@
 package gunna;
 
-import gunna.task.Deadline;
-import gunna.task.Event;
-import gunna.task.Task;
-import gunna.task.Todo;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.FileNotFoundException;
 import java.nio.file.Files;
 import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import gunna.task.Deadline;
+import gunna.task.Event;
+import gunna.task.Task;
+import gunna.task.Todo;
 
 /**
  * Handles saving and loading of tasks to/from the hard disk.
@@ -40,10 +41,10 @@ public class Storage {
         if (text == null) {
             return "";
         }
-        return text.replace("\\", "\\\\")  // Escape backslash first
-                   .replace("|", "\\|")     // Escape pipe
-                   .replace("\n", "\\n")    // Escape newline
-                   .replace("\r", "\\r");   // Escape carriage return
+        return text.replace("\\", "\\\\") // Escape backslash first
+                   .replace("|", "\\|") // Escape pipe
+                   .replace("\n", "\\n") // Escape newline
+                   .replace("\r", "\\r"); // Escape carriage return
     }
 
     /**
@@ -149,39 +150,39 @@ public class Storage {
             Task task = null;
 
             switch (type) {
-            case "T":
-                if (parts.length != 3) {
-                    return null;  // Todo should have exactly 3 parts
-                }
-                task = new Todo(description);
-                break;
-            case "D":
-                if (parts.length != 4) {
-                    return null;  // Deadline should have exactly 4 parts
-                }
-                String by = unescapeText(parts[3]);
-                if (by.trim().isEmpty()) {
-                    return null;
-                }
-                try {
-                    task = Deadline.createWithDateString(description, by);
-                } catch (Exception e) {
-                    return null;  // Invalid date format in file
-                }
-                break;
-            case "E":
-                if (parts.length != 5) {
-                    return null;  // Event should have exactly 5 parts
-                }
-                String from = unescapeText(parts[3]);
-                String to = unescapeText(parts[4]);
-                if (from.trim().isEmpty() || to.trim().isEmpty()) {
-                    return null;
-                }
-                task = new Event(description, from, to);
-                break;
-            default:
-                return null;  // Unknown task type
+                case "T":
+                    if (parts.length != 3) {
+                        return null; // Todo should have exactly 3 parts
+                    }
+                    task = new Todo(description);
+                    break;
+                case "D":
+                    if (parts.length != 4) {
+                        return null; // Deadline should have exactly 4 parts
+                    }
+                    String by = unescapeText(parts[3]);
+                    if (by.trim().isEmpty()) {
+                        return null;
+                    }
+                    try {
+                        task = Deadline.createWithDateString(description, by);
+                    } catch (Exception e) {
+                        return null; // Invalid date format in file
+                    }
+                    break;
+                case "E":
+                    if (parts.length != 5) {
+                        return null; // Event should have exactly 5 parts
+                    }
+                    String from = unescapeText(parts[3]);
+                    String to = unescapeText(parts[4]);
+                    if (from.trim().isEmpty() || to.trim().isEmpty()) {
+                        return null;
+                    }
+                    task = new Event(description, from, to);
+                    break;
+                default:
+                    return null; // Unknown task type
             }
 
             if (task != null && isDone) {
@@ -190,7 +191,7 @@ public class Storage {
 
             return task;
         } catch (Exception e) {
-            return null;  // Return null for any parsing errors
+            return null; // Return null for any parsing errors
         }
     }
 

@@ -1,9 +1,10 @@
 package gunna;
 
-import gunna.task.Deadline;
-import gunna.task.Task;
 import java.time.LocalDate;
 import java.util.ArrayList;
+
+import gunna.task.Deadline;
+import gunna.task.Task;
 
 /**
  * Represents a list of tasks.

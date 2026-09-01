@@ -1,8 +1,9 @@
 package gunna;
 
-import gunna.task.Task;
 import java.util.ArrayList;
 import java.util.Scanner;
+
+import gunna.task.Task;
 
 /**
  * Handles all interactions with the user.
