@@ -2,6 +2,7 @@ package gunna;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 import gunna.task.Deadline;
 import gunna.task.Task;
@@ -131,13 +132,11 @@ public class TaskList {
      */
     public ArrayList<Task> findTasksByKeyword(String keyword) {
         assert keyword != null : "Keyword cannot be null";
-        ArrayList<Task> matchingTasks = new ArrayList<>();
+
+
         String lowerKeyword = keyword.toLowerCase();
-        for (Task task : tasks) {
-            if (task.getDescription().toLowerCase().contains(lowerKeyword)) {
-                matchingTasks.add(task);
-            }
-        }
-        return matchingTasks;
+        return tasks.stream()
+                .filter(task -> task.getDescription().toLowerCase().contains(lowerKeyword))
+                .collect(Collectors.toCollection(ArrayList::new));
     }
 }
