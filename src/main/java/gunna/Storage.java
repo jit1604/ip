@@ -27,6 +27,8 @@ public class Storage {
      * @param filePath The path to the data file relative to the project root.
      */
     public Storage(String filePath) {
+        assert filePath != null : "File path cannot be null";
+        assert !filePath.trim().isEmpty() : "File path cannot be empty";
         this.filePath = filePath;
     }
 
@@ -203,6 +205,7 @@ public class Storage {
      * @param tasks The list of tasks to save.
      */
     public void saveTasks(ArrayList<Task> tasks) {
+        assert tasks != null : "Task list cannot be null when saving";
         File file = new File(filePath);
         File parentDir = file.getParentFile();
 
@@ -263,7 +266,8 @@ public class Storage {
                     + " | " + escapeText(event.getFrom())
                     + " | " + escapeText(event.getTo());
         } else {
-            // Fallback for base Task class
+            // Fallback for base Task class - should never happen in normal operation
+            assert false : "Unexpected task type: " + task.getClass().getName();
             return "T | " + status + " | " + escapeText(task.getDescription());
         }
     }
