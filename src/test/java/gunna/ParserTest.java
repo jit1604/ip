@@ -15,6 +15,7 @@ import gunna.command.InvalidCommand;
 import gunna.command.ListCommand;
 import gunna.command.MarkCommand;
 import gunna.command.SearchCommand;
+import gunna.command.SortCommand;
 import gunna.command.TodoCommand;
 import gunna.command.UnmarkCommand;
 
@@ -385,5 +386,55 @@ public class ParserTest {
         Command command = Parser.parse("deadline task  /by  Monday");
         assertTrue(command instanceof DeadlineCommand,
                 "Parsing deadline with spaces around /by should work");
+    }
+
+    // Test sort command parsing
+
+    @Test
+    public void parse_sortWithValidCriterion_returnsSortCommand() throws DukeException {
+        Command statusCommand = Parser.parse("sort status");
+        assertTrue(statusCommand instanceof SortCommand,
+                "Parsing 'sort status' should return SortCommand");
+
+        Command descCommand = Parser.parse("sort description");
+        assertTrue(descCommand instanceof SortCommand,
+                "Parsing 'sort description' should return SortCommand");
+
+        Command dateCommand = Parser.parse("sort date");
+        assertTrue(dateCommand instanceof SortCommand,
+                "Parsing 'sort date' should return SortCommand");
+    }
+
+    @Test
+    public void parse_sortCaseInsensitive_returnsSortCommand() throws DukeException {
+        Command command1 = Parser.parse("sort STATUS");
+        assertTrue(command1 instanceof SortCommand,
+                "Parsing 'sort STATUS' should return SortCommand");
+
+        Command command2 = Parser.parse("sort Description");
+        assertTrue(command2 instanceof SortCommand,
+                "Parsing 'sort Description' should return SortCommand");
+
+        Command command3 = Parser.parse("sort DATE");
+        assertTrue(command3 instanceof SortCommand,
+                "Parsing 'sort DATE' should return SortCommand");
+    }
+
+    @Test
+    public void parse_sortWithoutCriterion_throwsException() {
+        assertThrows(DukeException.class, () -> {
+            Parser.parse("sort");
+        }, "Parsing 'sort' without criterion should throw DukeException");
+    }
+
+    @Test
+    public void parse_sortWithInvalidCriterion_throwsException() {
+        assertThrows(DukeException.class, () -> {
+            Parser.parse("sort invalid");
+        }, "Parsing 'sort invalid' should throw DukeException");
+
+        assertThrows(DukeException.class, () -> {
+            Parser.parse("sort abc");
+        }, "Parsing 'sort abc' should throw DukeException");
     }
 }

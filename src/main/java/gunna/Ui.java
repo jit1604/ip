@@ -179,6 +179,26 @@ public class Ui {
     }
 
     /**
+     * Displays tasks sorted by the specified criterion.
+     * This is a temporary view and does not modify the underlying task list.
+     *
+     * @param tasks The sorted list of tasks to display.
+     * @param criterion The criterion used for sorting (status, description, or date).
+     */
+    public void showSortedTasks(ArrayList<Task> tasks, String criterion) {
+        System.out.println(DELIMITER);
+        System.out.println("     Here are your tasks sorted by " + criterion + ":");
+        if (tasks.isEmpty()) {
+            System.out.println("     You have no tasks in your list.");
+        } else {
+            for (int i = 0; i < tasks.size(); i++) {
+                System.out.println("     " + (i + 1) + "." + tasks.get(i));
+            }
+        }
+        System.out.println(DELIMITER);
+    }
+
+    /**
      * Closes the scanner resource.
      */
     public void close() {

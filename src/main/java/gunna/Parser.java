@@ -10,6 +10,7 @@ import gunna.command.InvalidCommand;
 import gunna.command.ListCommand;
 import gunna.command.MarkCommand;
 import gunna.command.SearchCommand;
+import gunna.command.SortCommand;
 import gunna.command.TodoCommand;
 import gunna.command.UnmarkCommand;
 
@@ -53,6 +54,8 @@ public class Parser {
             return parseSearchCommand(fullCommand);
         } else if (fullCommand.equals("on") || fullCommand.startsWith("on ")) {
             return parseFindCommand(fullCommand);
+        } else if (fullCommand.equals("sort") || fullCommand.startsWith("sort ")) {
+            return parseSortCommand(fullCommand);
         } else {
             return new InvalidCommand();
         }
@@ -294,6 +297,29 @@ public class Parser {
     private static Command parseFindCommand(String fullCommand) {
         String dateStr = parseDate(fullCommand);
         return new FindCommand(dateStr);
+    }
+
+    /**
+     * Parses a sort command.
+     *
+     * @param fullCommand The full sort command string.
+     * @return A SortCommand object.
+     * @throws DukeException If the criterion is missing or invalid.
+     */
+    private static Command parseSortCommand(String fullCommand) throws DukeException {
+        String criterion = getArgument(fullCommand, "sort").trim();
+        if (criterion.isEmpty()) {
+            throw new DukeException("OOPS!!! Please specify a sort criterion.\n"
+                    + "     Usage: sort status / sort description / sort date");
+        }
+        String normalizedCriterion = criterion.toLowerCase();
+        if (!normalizedCriterion.equals("status")
+                && !normalizedCriterion.equals("description")
+                && !normalizedCriterion.equals("date")) {
+            throw new DukeException("OOPS!!! Invalid sort criterion.\n"
+                    + "     Usage: sort status / sort description / sort date");
+        }
+        return new SortCommand(normalizedCriterion);
     }
 
     /**
