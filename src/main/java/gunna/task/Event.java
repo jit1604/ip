@@ -17,6 +17,8 @@ public class Event extends Task {
      */
     public Event(String description, String from, String to) {
         super(description);
+        assert from != null : "Event start time cannot be null";
+        assert to != null : "Event end time cannot be null";
         this.from = from;
         this.to = to;
     }

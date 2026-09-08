@@ -27,6 +27,7 @@ public class Parser {
      * @throws DukeException If the command format is invalid.
      */
     public static Command parse(String fullCommand) throws DukeException {
+        assert fullCommand != null : "Command string cannot be null";
         if (fullCommand.equals("bye")) {
             return new ExitCommand();
         } else if (fullCommand.equals("list")) {

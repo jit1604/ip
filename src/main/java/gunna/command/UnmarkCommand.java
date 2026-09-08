@@ -30,6 +30,9 @@ public class UnmarkCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        assert tasks != null : "Task list cannot be null";
+        assert ui != null : "UI cannot be null";
+        assert storage != null : "Storage cannot be null";
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
             throw new DukeException("OOPS!!! Task number " + (taskIndex + 1) + " doesn't exist.\n"
                     + "     You have " + tasks.size() + " task(s) in your list.");
