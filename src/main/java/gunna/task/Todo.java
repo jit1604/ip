@@ -5,6 +5,7 @@ package gunna.task;
  * A todo task only has a description and a completion status.
  */
 public class Todo extends Task {
+    public static final String TASK_TYPE = "T";
 
     /**
      * Creates a new Todo task with the given description.
@@ -23,7 +24,8 @@ public class Todo extends Task {
      */
     @Override
     public String toFileFormat() {
-        return "T | " + (isDone ? "1" : "0") + " | " + description;
+        return TASK_TYPE + FIELD_SEPARATOR + (isDone ? STATUS_DONE : STATUS_NOT_DONE)
+                + FIELD_SEPARATOR + description;
     }
 
     /**

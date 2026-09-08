@@ -5,6 +5,7 @@ package gunna.task;
  * An event has a description, start time, end time, and completion status.
  */
 public class Event extends Task {
+    public static final String TASK_TYPE = "E";
     protected String from;
     protected String to;
 
@@ -47,7 +48,8 @@ public class Event extends Task {
      */
     @Override
     public String toFileFormat() {
-        return "E | " + (isDone ? "1" : "0") + " | " + description + " | " + from + " | " + to;
+        return TASK_TYPE + FIELD_SEPARATOR + (isDone ? STATUS_DONE : STATUS_NOT_DONE)
+                + FIELD_SEPARATOR + description + FIELD_SEPARATOR + from + FIELD_SEPARATOR + to;
     }
 
     /**

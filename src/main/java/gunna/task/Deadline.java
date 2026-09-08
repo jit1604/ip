@@ -8,6 +8,7 @@ import java.time.format.DateTimeParseException;
  * Represents a deadline task with a specific due date.
  */
 public class Deadline extends Task {
+    public static final String TASK_TYPE = "D";
     private static final DateTimeFormatter INPUT_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private static final DateTimeFormatter OUTPUT_FORMAT = DateTimeFormatter.ofPattern("MMM dd yyyy");
     protected LocalDate by;
@@ -71,7 +72,8 @@ public class Deadline extends Task {
      */
     @Override
     public String toFileFormat() {
-        return "D | " + (isDone ? "1" : "0") + " | " + description + " | " + by.format(INPUT_FORMAT);
+        return TASK_TYPE + FIELD_SEPARATOR + (isDone ? STATUS_DONE : STATUS_NOT_DONE)
+                + FIELD_SEPARATOR + description + FIELD_SEPARATOR + by.format(INPUT_FORMAT);
     }
 
     /**
