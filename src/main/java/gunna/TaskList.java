@@ -26,6 +26,7 @@ public class TaskList {
      * @param tasks The initial list of tasks.
      */
     public TaskList(ArrayList<Task> tasks) {
+        assert tasks != null : "Task list cannot be null";
         this.tasks = tasks;
     }
 
@@ -35,6 +36,7 @@ public class TaskList {
      * @param task The task to add.
      */
     public void add(Task task) {
+        assert task != null : "Cannot add null task to list";
         tasks.add(task);
     }
 
@@ -107,6 +109,7 @@ public class TaskList {
      * @return A list of tasks occurring on the specified date.
      */
     public ArrayList<Task> getTasksOnDate(LocalDate date) {
+        assert date != null : "Date cannot be null";
         ArrayList<Task> matchingTasks = new ArrayList<>();
         for (Task task : tasks) {
             if (task instanceof Deadline) {
@@ -127,6 +130,7 @@ public class TaskList {
      * @return A list of tasks whose descriptions contain the keyword.
      */
     public ArrayList<Task> findTasksByKeyword(String keyword) {
+        assert keyword != null : "Keyword cannot be null";
         ArrayList<Task> matchingTasks = new ArrayList<>();
         String lowerKeyword = keyword.toLowerCase();
         for (Task task : tasks) {
