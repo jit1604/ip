@@ -18,6 +18,11 @@ import gunna.command.UnmarkCommand;
  * Converts command strings into Command objects.
  */
 public class Parser {
+    private static final String DELIMITER_BY_WITH_SPACE = " /by ";
+    private static final String DELIMITER_BY_NO_SPACE = " /by";
+    private static final String DELIMITER_FROM = " /from ";
+    private static final String DELIMITER_TO_WITH_SPACE = " /to ";
+    private static final String DELIMITER_TO_NO_SPACE = " /to";
 
     /**
      * Parses a full command string and returns the appropriate Command object.
@@ -95,12 +100,12 @@ public class Parser {
         String remaining = getArgument(command, "deadline");
 
         // Find the /by delimiter
-        int byIndex = remaining.indexOf(" /by ");
+        int byIndex = remaining.indexOf(DELIMITER_BY_WITH_SPACE);
         boolean hasTrailingSpace = true;
 
         // Also check for /by at the end without trailing space
-        if (byIndex == -1 && remaining.endsWith(" /by")) {
-            byIndex = remaining.lastIndexOf(" /by");
+        if (byIndex == -1 && remaining.endsWith(DELIMITER_BY_NO_SPACE)) {
+            byIndex = remaining.lastIndexOf(DELIMITER_BY_NO_SPACE);
             hasTrailingSpace = false;
         }
 
@@ -112,9 +117,9 @@ public class Parser {
         String description = remaining.substring(0, byIndex).trim();
         String by;
         if (hasTrailingSpace) {
-            by = remaining.substring(byIndex + 5).trim(); // " /by " is 5 chars
+            by = remaining.substring(byIndex + DELIMITER_BY_WITH_SPACE.length()).trim();
         } else {
-            by = remaining.substring(byIndex + 4).trim(); // " /by" is 4 chars
+            by = remaining.substring(byIndex + DELIMITER_BY_NO_SPACE.length()).trim();
         }
 
         return new String[]{description, by};
@@ -130,28 +135,28 @@ public class Parser {
     private static String[] parseEvent(String command) {
         String remaining = getArgument(command, "event");
 
-        int fromIndex = remaining.indexOf(" /from ");
-        int toIndex = remaining.indexOf(" /to ");
+        int fromIndex = remaining.indexOf(DELIMITER_FROM);
+        int toIndex = remaining.indexOf(DELIMITER_TO_WITH_SPACE);
 
         // Check for /to without trailing space at the end
-        if (toIndex == -1 && remaining.contains(" /to")) {
-            toIndex = remaining.lastIndexOf(" /to");
+        if (toIndex == -1 && remaining.contains(DELIMITER_TO_NO_SPACE)) {
+            toIndex = remaining.lastIndexOf(DELIMITER_TO_NO_SPACE);
         }
 
         // Validate that both delimiters exist and are in the correct order
-        if (fromIndex == -1 || toIndex == -1 || fromIndex + 7 > toIndex) {
+        if (fromIndex == -1 || toIndex == -1 || fromIndex + DELIMITER_FROM.length() > toIndex) {
             return null;
         }
 
         String description = remaining.substring(0, fromIndex).trim();
-        String from = remaining.substring(fromIndex + 7, toIndex).trim(); // " /from " is 7 chars
+        String from = remaining.substring(fromIndex + DELIMITER_FROM.length(), toIndex).trim();
         String to;
 
         // Handle both " /to " and " /to" (at end without trailing space)
-        if (remaining.indexOf(" /to ") != -1) {
-            to = remaining.substring(toIndex + 5).trim(); // " /to " is 5 chars
+        if (remaining.indexOf(DELIMITER_TO_WITH_SPACE) != -1) {
+            to = remaining.substring(toIndex + DELIMITER_TO_WITH_SPACE.length()).trim();
         } else {
-            to = remaining.substring(toIndex + 4).trim(); // " /to" is 4 chars
+            to = remaining.substring(toIndex + DELIMITER_TO_NO_SPACE.length()).trim();
         }
 
         return new String[]{description, from, to};

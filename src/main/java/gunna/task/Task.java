@@ -5,6 +5,11 @@ package gunna.task;
  * This is the base class for specific task types like Todo, Deadline, and Event.
  */
 public class Task {
+    // Storage format constants
+    public static final String FIELD_SEPARATOR = " | ";
+    public static final String STATUS_DONE = "1";
+    public static final String STATUS_NOT_DONE = "0";
+
     protected String description;
     protected boolean isDone;
 
@@ -68,7 +73,8 @@ public class Task {
      * @return A pipe-separated string representation of the task.
      */
     public String toFileFormat() {
-        return "T | " + (isDone ? "1" : "0") + " | " + description;
+        return "T" + FIELD_SEPARATOR + (isDone ? STATUS_DONE : STATUS_NOT_DONE)
+                + FIELD_SEPARATOR + description;
     }
 
     /**

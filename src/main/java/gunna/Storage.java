@@ -126,7 +126,7 @@ public class Storage {
      */
     private Task parseTask(String line) {
         try {
-            // Split on " | " but need to handle escaped pipes
+            // Split on field separator but need to handle escaped pipes
             String[] parts = line.split("(?<!\\\\) \\| ");
 
             if (parts.length < 3) {
@@ -137,11 +137,11 @@ public class Storage {
             String statusStr = parts[1].trim();
 
             // Validate status is either "0" or "1"
-            if (!statusStr.equals("0") && !statusStr.equals("1")) {
+            if (!statusStr.equals(Task.STATUS_NOT_DONE) && !statusStr.equals(Task.STATUS_DONE)) {
                 return null;
             }
 
-            boolean isDone = statusStr.equals("1");
+            boolean isDone = statusStr.equals(Task.STATUS_DONE);
             String description = unescapeText(parts[2]);
 
             // Validate description is not empty after unescaping
@@ -152,13 +152,13 @@ public class Storage {
             Task task = null;
 
             switch (type) {
-                case "T":
+                case Todo.TASK_TYPE:
                     if (parts.length != 3) {
                         return null; // Todo should have exactly 3 parts
                     }
                     task = new Todo(description);
                     break;
-                case "D":
+                case Deadline.TASK_TYPE:
                     if (parts.length != 4) {
                         return null; // Deadline should have exactly 4 parts
                     }
@@ -172,7 +172,7 @@ public class Storage {
                         return null; // Invalid date format in file
                     }
                     break;
-                case "E":
+                case Event.TASK_TYPE:
                     if (parts.length != 5) {
                         return null; // Event should have exactly 5 parts
                     }
@@ -252,23 +252,27 @@ public class Storage {
      * @return The formatted string ready to be written to file.
      */
     private String formatTaskForFile(Task task) {
-        String status = task.isDone() ? "1" : "0";
+        String status = task.isDone() ? Task.STATUS_DONE : Task.STATUS_NOT_DONE;
 
         if (task instanceof Todo) {
-            return "T | " + status + " | " + escapeText(task.getDescription());
+            return Todo.TASK_TYPE + Task.FIELD_SEPARATOR + status
+                    + Task.FIELD_SEPARATOR + escapeText(task.getDescription());
         } else if (task instanceof Deadline) {
             Deadline deadline = (Deadline) task;
-            return "D | " + status + " | " + escapeText(task.getDescription())
-                    + " | " + escapeText(deadline.getByForStorage());
+            return Deadline.TASK_TYPE + Task.FIELD_SEPARATOR + status
+                    + Task.FIELD_SEPARATOR + escapeText(task.getDescription())
+                    + Task.FIELD_SEPARATOR + escapeText(deadline.getByForStorage());
         } else if (task instanceof Event) {
             Event event = (Event) task;
-            return "E | " + status + " | " + escapeText(task.getDescription())
-                    + " | " + escapeText(event.getFrom())
-                    + " | " + escapeText(event.getTo());
+            return Event.TASK_TYPE + Task.FIELD_SEPARATOR + status
+                    + Task.FIELD_SEPARATOR + escapeText(task.getDescription())
+                    + Task.FIELD_SEPARATOR + escapeText(event.getFrom())
+                    + Task.FIELD_SEPARATOR + escapeText(event.getTo());
         } else {
             // Fallback for base Task class - should never happen in normal operation
             assert false : "Unexpected task type: " + task.getClass().getName();
-            return "T | " + status + " | " + escapeText(task.getDescription());
+            return Todo.TASK_TYPE + Task.FIELD_SEPARATOR + status
+                    + Task.FIELD_SEPARATOR + escapeText(task.getDescription());
         }
     }
 }
