@@ -32,12 +32,32 @@ public class Gunna {
      * @return The chatbot's response.
      */
     public String getResponse(String input) {
+        return getResponseWithStatus(input).message();
+    }
+
+    /**
+     * Generates a response and indicates whether it resulted from an invalid command.
+     * This lets a user interface present errors without inspecting the response wording.
+     *
+     * @param input The user's input command.
+     * @return The response text together with its error status.
+     */
+    public Response getResponseWithStatus(String input) {
         try {
             Command c = Parser.parse(input);
-            return c.execute(tasks, ui, storage);
+            return new Response(c.execute(tasks, ui, storage), false);
         } catch (DukeException e) {
-            return e.getMessage();
+            return new Response(e.getMessage(), true);
         }
+    }
+
+    /**
+     * Represents a chatbot response and whether it reports a command error.
+     *
+     * @param message The response shown to the user.
+     * @param isError Whether command processing produced an error.
+     */
+    public record Response(String message, boolean isError) {
     }
 
     /**

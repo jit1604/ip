@@ -2,6 +2,20 @@
 
 This file contains test cases for the GUNNA chatbot user interface.
 
+## Manual GUI Checks
+
+These checks cover the JavaFX layout, which is not exercised by the console-output test runner below.
+
+1. Launch the GUI and enter `todo read a long chapter title that should wrap neatly in the chat bubble`.
+   Expected: the command is right-aligned in a blue bubble without an avatar; Gunna's reply is left-aligned
+   beside a compact avatar. Neither bubble uses more than roughly three quarters of the chat width.
+2. Enter `unknown-command`.
+   Expected: Gunna's existing explanatory error text is preserved in a left-aligned bubble labelled `Error`
+   with a distinct border and background.
+3. Resize the window wider and narrower, staying above the minimum size.
+   Expected: the chat area and input field resize with the window, the Send button stays visible, and messages
+   rewrap without a horizontal scrollbar.
+
 ## Test Case 1: Add Todo Task
 
 **Aim:** Test that a todo task can be added successfully

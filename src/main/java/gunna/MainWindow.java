@@ -6,13 +6,12 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
 /**
  * Controller for the main GUI.
  */
-public class MainWindow extends AnchorPane {
+public class MainWindow {
     @FXML
     private ScrollPane scrollPane;
     @FXML
@@ -24,7 +23,6 @@ public class MainWindow extends AnchorPane {
 
     private Gunna gunna;
 
-    private Image userImage = new Image(this.getClass().getResourceAsStream("/images/DaUser.png"));
     private Image gunnaImage = new Image(this.getClass().getResourceAsStream("/images/DaGunna.png"));
 
     @FXML
@@ -52,11 +50,24 @@ public class MainWindow extends AnchorPane {
     @FXML
     private void handleUserInput() {
         String input = userInput.getText();
-        String response = gunna.getResponse(input);
+        Gunna.Response response = gunna.getResponseWithStatus(input);
         dialogContainer.getChildren().addAll(
-                DialogBox.getUserDialog(input, userImage),
-                DialogBox.getGunnaDialog(response, gunnaImage)
+                DialogBox.getUserDialog(input),
+                createGunnaDialog(response)
         );
         userInput.clear();
+    }
+
+    /**
+     * Creates the appropriate Gunna dialog based on whether command processing failed.
+     *
+     * @param response The response returned after processing user input.
+     * @return A normal or error-styled Gunna dialog.
+     */
+    private DialogBox createGunnaDialog(Gunna.Response response) {
+        if (response.isError()) {
+            return DialogBox.getErrorDialog(response.message(), gunnaImage);
+        }
+        return DialogBox.getGunnaDialog(response.message(), gunnaImage);
     }
 }
