@@ -183,13 +183,13 @@ public class Parser {
     private static Command parseMarkCommand(String fullCommand) throws DukeException {
         String argument = getArgument(fullCommand, "mark");
         if (argument.trim().isEmpty()) {
-            throw new DukeException("OOPS!!! Please specify which task to mark.\n     Usage: mark <task number>");
+            throw new DukeException("Task number required.\n     Usage: mark <task number>");
         }
         try {
             int taskIndex = parseTaskNumber(argument);
             return new MarkCommand(taskIndex);
         } catch (NumberFormatException e) {
-            throw new DukeException("OOPS!!! Task number must be a valid number.");
+            throw new DukeException("Task number must be a whole number.");
         }
     }
 
@@ -203,13 +203,13 @@ public class Parser {
     private static Command parseUnmarkCommand(String fullCommand) throws DukeException {
         String argument = getArgument(fullCommand, "unmark");
         if (argument.trim().isEmpty()) {
-            throw new DukeException("OOPS!!! Please specify which task to unmark.\n     Usage: unmark <task number>");
+            throw new DukeException("Task number required.\n     Usage: unmark <task number>");
         }
         try {
             int taskIndex = parseTaskNumber(argument);
             return new UnmarkCommand(taskIndex);
         } catch (NumberFormatException e) {
-            throw new DukeException("OOPS!!! Task number must be a valid number.");
+            throw new DukeException("Task number must be a whole number.");
         }
     }
 
@@ -223,13 +223,13 @@ public class Parser {
     private static Command parseDeleteCommand(String fullCommand) throws DukeException {
         String argument = getArgument(fullCommand, "delete");
         if (argument.trim().isEmpty()) {
-            throw new DukeException("OOPS!!! Please specify which task to delete.\n     Usage: delete <task number>");
+            throw new DukeException("Task number required.\n     Usage: delete <task number>");
         }
         try {
             int taskIndex = parseTaskNumber(argument);
             return new DeleteCommand(taskIndex);
         } catch (NumberFormatException e) {
-            throw new DukeException("OOPS!!! Task number must be a valid number.");
+            throw new DukeException("Task number must be a whole number.");
         }
     }
 
@@ -254,7 +254,7 @@ public class Parser {
     private static Command parseDeadlineCommand(String fullCommand) throws DukeException {
         String[] parts = parseDeadline(fullCommand);
         if (parts == null) {
-            throw new DukeException("OOPS!!! Please use the format: deadline <description> /by <time>");
+            throw new DukeException("Format check.\n     Usage: deadline <description> /by <time>");
         }
         return new DeadlineCommand(parts[0], parts[1]);
     }
@@ -269,7 +269,7 @@ public class Parser {
     private static Command parseEventCommand(String fullCommand) throws DukeException {
         String[] parts = parseEvent(fullCommand);
         if (parts == null) {
-            throw new DukeException("OOPS!!! Please use the format: event <description> /from <time> /to <time>");
+            throw new DukeException("Format check.\n     Usage: event <description> /from <time> /to <time>");
         }
         return new EventCommand(parts[0], parts[1], parts[2]);
     }

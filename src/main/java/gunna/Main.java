@@ -25,7 +25,7 @@ public class Main extends Application {
             stage.setScene(scene);
             stage.setMinWidth(360);
             stage.setMinHeight(420);
-            stage.setTitle("Gunna");
+            stage.setTitle("Gunna | Mission Control");
             fxmlLoader.<MainWindow>getController().setGunna(gunna);
             fxmlLoader.<MainWindow>getController().showWelcomeMessage();
             stage.show();

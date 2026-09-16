@@ -34,13 +34,13 @@ public class DeleteCommand extends Command {
         assert ui != null : "UI cannot be null";
         assert storage != null : "Storage cannot be null";
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
-            throw new DukeException("OOPS!!! Task number " + (taskIndex + 1) + " doesn't exist.\n"
-                    + "     You have " + tasks.size() + " task(s) in your list.");
+            throw new DukeException("Task number " + (taskIndex + 1) + " is not in the queue.\n"
+                    + "     Queue contains " + tasks.size() + " task(s).");
         }
         Task removedTask = tasks.delete(taskIndex);
         ui.showTaskDeleted(removedTask, tasks.size());
         storage.saveTasks(tasks.getTasks());
-        return "Noted. I've removed this task:\n  " + removedTask
-                + "\nNow you have " + tasks.size() + " tasks in the list.";
+        return "Removed from the queue:\n  " + removedTask
+                + "\nQueue now holds " + tasks.size() + " task(s).";
     }
 }

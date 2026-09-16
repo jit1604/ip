@@ -46,8 +46,8 @@ public class MarkCommandTest {
         DukeException exception = assertThrows(DukeException.class, () -> {
             command.execute(tasks, ui, storage);
         });
-        assertTrue(exception.getMessage().contains("doesn't exist"),
-                "Exception should indicate task doesn't exist");
+        assertTrue(exception.getMessage().contains("not in the queue"),
+                "Exception should indicate that the task is unavailable");
     }
 
     @Test
@@ -58,7 +58,7 @@ public class MarkCommandTest {
         DukeException exception = assertThrows(DukeException.class, () -> {
             command.execute(tasks, ui, storage);
         });
-        assertTrue(exception.getMessage().contains("doesn't exist"));
+        assertTrue(exception.getMessage().contains("not in the queue"));
     }
 
     @Test

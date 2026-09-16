@@ -39,16 +39,16 @@ public class EventCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (description.isEmpty()) {
-            throw new DukeException("OOPS!!! The description of an event cannot be empty.");
+            throw new DukeException("Task details are required for an event.");
         }
         if (from.isEmpty() || to.isEmpty()) {
-            throw new DukeException("OOPS!!! The event time cannot be empty.");
+            throw new DukeException("Event start and end times are required.");
         }
         Task newTask = new Event(description, from, to);
         tasks.add(newTask);
         ui.showTaskAdded(newTask, tasks.size());
         storage.saveTasks(tasks.getTasks());
-        return "Got it. I've added this task:\n  " + newTask
-                + "\nNow you have " + tasks.size() + " tasks in the list.";
+        return "Task secured:\n  " + newTask
+                + "\nQueue now holds " + tasks.size() + " task(s).";
     }
 }

@@ -47,8 +47,8 @@ public class TodoCommandTest {
         DukeException exception = assertThrows(DukeException.class, () -> {
             command.execute(tasks, ui, storage);
         });
-        assertTrue(exception.getMessage().contains("cannot be empty"),
-                "Exception should indicate description cannot be empty");
+        assertTrue(exception.getMessage().contains("Task details are required"),
+                "Exception should indicate that task details are required");
     }
 
     @Test

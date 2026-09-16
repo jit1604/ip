@@ -20,7 +20,7 @@ public class GunnaTest {
         Gunna.Response response = gunna.getResponseWithStatus("todo write a test");
 
         assertFalse(response.isError());
-        assertTrue(response.message().contains("I've added this task"));
+        assertTrue(response.message().contains("Task secured"));
     }
 
     @Test
@@ -30,6 +30,6 @@ public class GunnaTest {
         Gunna.Response response = gunna.getResponseWithStatus("unknown-command");
 
         assertTrue(response.isError());
-        assertTrue(response.message().contains("don't know what that means"));
+        assertTrue(response.message().contains("Command not recognized"));
     }
 }

@@ -38,20 +38,20 @@ public class DeadlineCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (description.isEmpty()) {
-            throw new DukeException("OOPS!!! The description of a deadline cannot be empty.");
+            throw new DukeException("Task details are required for a deadline.");
         }
         if (by.isEmpty()) {
-            throw new DukeException("OOPS!!! The deadline time cannot be empty.");
+            throw new DukeException("Deadline date is required.");
         }
         try {
             Task newTask = Deadline.createWithDateString(description, by);
             tasks.add(newTask);
             ui.showTaskAdded(newTask, tasks.size());
             storage.saveTasks(tasks.getTasks());
-            return "Got it. I've added this task:\n  " + newTask
-                    + "\nNow you have " + tasks.size() + " tasks in the list.";
+            return "Task secured:\n  " + newTask
+                    + "\nQueue now holds " + tasks.size() + " task(s).";
         } catch (DateTimeParseException e) {
-            throw new DukeException("OOPS!!! Invalid date format. Please use: yyyy-MM-dd (e.g., 2019-12-31)");
+            throw new DukeException("Date format invalid. Use yyyy-MM-dd (e.g., 2019-12-31).");
         }
     }
 }

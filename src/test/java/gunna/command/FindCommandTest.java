@@ -48,8 +48,8 @@ public class FindCommandTest {
         DukeException exception = assertThrows(DukeException.class, () -> {
             command.execute(tasks, ui, storage);
         });
-        assertTrue(exception.getMessage().contains("specify a date"),
-                "Exception should indicate date must be specified");
+        assertTrue(exception.getMessage().contains("Date required"),
+                "Exception should indicate that a date is required");
     }
 
     @Test
@@ -60,7 +60,7 @@ public class FindCommandTest {
         DukeException exception = assertThrows(DukeException.class, () -> {
             command.execute(tasks, ui, storage);
         });
-        assertTrue(exception.getMessage().contains("Invalid date format"),
+        assertTrue(exception.getMessage().contains("Date format invalid"),
                 "Exception should indicate invalid date format");
     }
 

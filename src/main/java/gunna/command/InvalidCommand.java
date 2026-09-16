@@ -19,6 +19,6 @@ public class InvalidCommand extends Command {
      */
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
-        throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
+        throw new DukeException("Command not recognized. Check the format and try again.");
     }
 }

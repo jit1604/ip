@@ -34,13 +34,13 @@ public class UnmarkCommand extends Command {
         assert ui != null : "UI cannot be null";
         assert storage != null : "Storage cannot be null";
         if (taskIndex < 0 || taskIndex >= tasks.size()) {
-            throw new DukeException("OOPS!!! Task number " + (taskIndex + 1) + " doesn't exist.\n"
-                    + "     You have " + tasks.size() + " task(s) in your list.");
+            throw new DukeException("Task number " + (taskIndex + 1) + " is not in the queue.\n"
+                    + "     Queue contains " + tasks.size() + " task(s).");
         }
         tasks.unmark(taskIndex);
         Task task = tasks.get(taskIndex);
         ui.showTaskUnmarked(task);
         storage.saveTasks(tasks.getTasks());
-        return "OK, I've marked this task as not done yet:\n  " + task;
+        return "Returned to queue:\n  " + task;
     }
 }

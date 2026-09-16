@@ -47,10 +47,8 @@ public class DeadlineCommandTest {
         DukeException exception = assertThrows(DukeException.class, () -> {
             command.execute(tasks, ui, storage);
         });
-        assertTrue(exception.getMessage().contains("description"),
-                "Exception should mention description");
-        assertTrue(exception.getMessage().contains("cannot be empty"),
-                "Exception should indicate description cannot be empty");
+        assertTrue(exception.getMessage().contains("Task details"),
+                "Exception should indicate that task details are required");
     }
 
     @Test
@@ -60,10 +58,8 @@ public class DeadlineCommandTest {
         DukeException exception = assertThrows(DukeException.class, () -> {
             command.execute(tasks, ui, storage);
         });
-        assertTrue(exception.getMessage().contains("deadline time"),
-                "Exception should mention deadline time");
-        assertTrue(exception.getMessage().contains("cannot be empty"),
-                "Exception should indicate deadline time cannot be empty");
+        assertTrue(exception.getMessage().contains("Deadline date is required"),
+                "Exception should indicate that a deadline date is required");
     }
 
     @Test
@@ -73,7 +69,7 @@ public class DeadlineCommandTest {
         DukeException exception = assertThrows(DukeException.class, () -> {
             command.execute(tasks, ui, storage);
         });
-        assertTrue(exception.getMessage().contains("Invalid date format"),
+        assertTrue(exception.getMessage().contains("Date format invalid"),
                 "Exception should indicate invalid date format");
     }
 

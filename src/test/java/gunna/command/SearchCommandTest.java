@@ -49,8 +49,8 @@ public class SearchCommandTest {
         DukeException exception = assertThrows(DukeException.class, () -> {
             command.execute(tasks, ui, storage);
         });
-        assertTrue(exception.getMessage().contains("specify a search keyword"),
-                "Exception should indicate keyword must be specified");
+        assertTrue(exception.getMessage().contains("Search keyword required"),
+                "Exception should indicate that a search keyword is required");
     }
 
     @Test

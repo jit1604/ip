@@ -18,7 +18,7 @@ public class ExitCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) {
         ui.showGoodbye();
-        return "Bye. Hope to see you again soon!";
+        return "Gunna signing off. See you next mission.";
     }
 
     /**

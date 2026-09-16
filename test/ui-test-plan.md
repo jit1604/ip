@@ -36,20 +36,20 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] borrow book
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Here are the tasks in your list:
+     Current queue:
      1.[T][ ] borrow book
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -73,20 +73,20 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [D][ ] return book (by: Dec 15 2024)
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Here are the tasks in your list:
+     Current queue:
      1.[D][ ] return book (by: Dec 15 2024)
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -110,20 +110,20 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [E][ ] project meeting (from: Mon 2pm to: 4pm)
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Here are the tasks in your list:
+     Current queue:
      1.[E][ ] project meeting (from: Mon 2pm to: 4pm)
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -148,24 +148,24 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] read book
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Nice! I've marked this task as done:
+     Marked complete:
        [T][X] read book
 ____________________________________________________________
 ____________________________________________________________
-     Here are the tasks in your list:
+     Current queue:
      1.[T][X] read book
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -191,28 +191,28 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] read book
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Nice! I've marked this task as done:
+     Marked complete:
        [T][X] read book
 ____________________________________________________________
 ____________________________________________________________
-     OK, I've marked this task as not done yet:
+     Returned to queue:
        [T][ ] read book
 ____________________________________________________________
 ____________________________________________________________
-     Here are the tasks in your list:
+     Current queue:
      1.[T][ ] read book
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -238,32 +238,32 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] buy groceries
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [D][ ] submit assignment (by: Dec 20 2024)
-     Now you have 2 tasks in the list.
+     Queue now holds 2 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [E][ ] team meeting (from: 2pm to: 3pm)
-     Now you have 3 tasks in the list.
+     Queue now holds 3 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Here are the tasks in your list:
+     Current queue:
      1.[T][ ] buy groceries
      2.[D][ ] submit assignment (by: Dec 20 2024)
      3.[E][ ] team meeting (from: 2pm to: 3pm)
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -286,14 +286,15 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Please use the format: deadline <description> /by <time>
+     Format check.
+     Usage: deadline <description> /by <time>
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -316,14 +317,15 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Please use the format: event <description> /from <time> /to <time>
+     Format check.
+     Usage: event <description> /from <time> /to <time>
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -346,14 +348,14 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! The description of a todo cannot be empty.
+     Task details are required for a todo.
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -376,14 +378,14 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! I'm sorry, but I don't know what that means :-(
+     Command not recognized. Check the format and try again.
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -407,20 +409,20 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] read book
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Task number 5 doesn't exist.
-     You have 1 task(s) in your list.
+     Task number 5 is not in the queue.
+     Queue contains 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -443,14 +445,14 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! The description of a deadline cannot be empty.
+     Task details are required for a deadline.
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -474,19 +476,19 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] read book
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Task number must be a valid number.
+     Task number must be a whole number.
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -509,14 +511,14 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! The description of an event cannot be empty.
+     Task details are required for an event.
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -541,23 +543,23 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! The description of a todo cannot be empty.
+     Task details are required for a todo.
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] valid task
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Here are the tasks in your list:
+     Current queue:
      1.[T][ ] valid task
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -581,20 +583,20 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] read book
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Task number 0 doesn't exist.
-     You have 1 task(s) in your list.
+     Task number 0 is not in the queue.
+     Queue contains 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -618,20 +620,20 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] read book
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Task number -1 doesn't exist.
-     You have 1 task(s) in your list.
+     Task number -1 is not in the queue.
+     Queue contains 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -659,35 +661,36 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! I'm sorry, but I don't know what that means :-(
+     Command not recognized. Check the format and try again.
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! The description of a todo cannot be empty.
+     Task details are required for a todo.
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Please use the format: deadline <description> /by <time>
+     Format check.
+     Usage: deadline <description> /by <time>
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] buy groceries
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [D][ ] submit report (by: Dec 25 2024)
-     Now you have 2 tasks in the list.
+     Queue now holds 2 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Here are the tasks in your list:
+     Current queue:
      1.[T][ ] buy groceries
      2.[D][ ] submit report (by: Dec 25 2024)
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -711,20 +714,20 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] task1
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Task number 2 doesn't exist.
-     You have 1 task(s) in your list.
+     Task number 2 is not in the queue.
+     Queue contains 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -747,14 +750,14 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! The deadline time cannot be empty.
+     Deadline date is required.
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -782,38 +785,38 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] task1
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] task2
-     Now you have 2 tasks in the list.
+     Queue now holds 2 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Nice! I've marked this task as done:
+     Marked complete:
        [T][X] task1
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Task number 5 doesn't exist.
-     You have 2 task(s) in your list.
+     Task number 5 is not in the queue.
+     Queue contains 2 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Nice! I've marked this task as done:
+     Marked complete:
        [T][X] task2
 ____________________________________________________________
 ____________________________________________________________
-     Here are the tasks in your list:
+     Current queue:
      1.[T][X] task1
      2.[T][X] task2
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -837,20 +840,20 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] task1
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Please specify which task to mark.
+     Task number required.
      Usage: mark <task number>
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -875,24 +878,24 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] task1
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Nice! I've marked this task as done:
+     Marked complete:
        [T][X] task1
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Please specify which task to unmark.
+     Task number required.
      Usage: unmark <task number>
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -915,14 +918,14 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! The event time cannot be empty.
+     Event start and end times are required.
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -953,50 +956,51 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] task1
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Please use the format: deadline <description> /by <time>
+     Format check.
+     Usage: deadline <description> /by <time>
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [E][ ] meeting (from: 2pm to: 3pm)
-     Now you have 2 tasks in the list.
+     Queue now holds 2 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Nice! I've marked this task as done:
+     Marked complete:
        [T][X] task1
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Task number 10 doesn't exist.
-     You have 2 task(s) in your list.
+     Task number 10 is not in the queue.
+     Queue contains 2 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] task2
-     Now you have 3 tasks in the list.
+     Queue now holds 3 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Task number must be a valid number.
+     Task number must be a whole number.
 ____________________________________________________________
 ____________________________________________________________
-     OK, I've marked this task as not done yet:
+     Returned to queue:
        [T][ ] task1
 ____________________________________________________________
 ____________________________________________________________
-     Here are the tasks in your list:
+     Current queue:
      1.[T][ ] task1
      2.[E][ ] meeting (from: 2pm to: 3pm)
      3.[T][ ] task2
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -1023,36 +1027,36 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] task1
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] task2
-     Now you have 2 tasks in the list.
+     Queue now holds 2 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] task3
-     Now you have 3 tasks in the list.
+     Queue now holds 3 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Noted. I've removed this task:
+     Removed from the queue:
        [T][ ] task2
-     Now you have 2 tasks in the list.
+     Queue now holds 2 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Here are the tasks in your list:
+     Current queue:
      1.[T][ ] task1
      2.[T][ ] task3
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -1076,20 +1080,20 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] task1
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Task number 5 doesn't exist.
-     You have 1 task(s) in your list.
+     Task number 5 is not in the queue.
+     Queue contains 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -1113,20 +1117,20 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] task1
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Please specify which task to delete.
+     Task number required.
      Usage: delete <task number>
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -1150,19 +1154,19 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] task1
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Task number must be a valid number.
+     Task number must be a whole number.
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -1189,36 +1193,36 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] buy groceries
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [D][ ] submit report (by: Dec 31 2024)
-     Now you have 2 tasks in the list.
+     Queue now holds 2 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [E][ ] meeting (from: 2pm to: 3pm)
-     Now you have 3 tasks in the list.
+     Queue now holds 3 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Noted. I've removed this task:
+     Removed from the queue:
        [D][ ] submit report (by: Dec 31 2024)
-     Now you have 2 tasks in the list.
+     Queue now holds 2 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Here are the tasks in your list:
+     Current queue:
      1.[T][ ] buy groceries
      2.[E][ ] meeting (from: 2pm to: 3pm)
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -1241,14 +1245,14 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Invalid date format. Please use: yyyy-MM-dd (e.g., 2019-12-31)
+     Date format invalid. Use yyyy-MM-dd (e.g., 2019-12-31).
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -1276,38 +1280,38 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [D][ ] return book (by: Dec 15 2024)
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [D][ ] submit assignment (by: Dec 15 2024)
-     Now you have 2 tasks in the list.
+     Queue now holds 2 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [D][ ] project meeting (by: Dec 20 2024)
-     Now you have 3 tasks in the list.
+     Queue now holds 3 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Here are the tasks on Dec 15 2024:
+     Schedule for Dec 15 2024:
      1.[D][ ] return book (by: Dec 15 2024)
      2.[D][ ] submit assignment (by: Dec 15 2024)
 ____________________________________________________________
 ____________________________________________________________
-     Here are the tasks on Dec 20 2024:
+     Schedule for Dec 20 2024:
      1.[D][ ] project meeting (by: Dec 20 2024)
 ____________________________________________________________
 ____________________________________________________________
-     No tasks found on Dec 10 2024
+     No tasks scheduled for Dec 10 2024
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -1333,31 +1337,31 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] read book
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [D][ ] return book (by: Jun 15 2024)
-     Now you have 2 tasks in the list.
+     Queue now holds 2 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] buy groceries
-     Now you have 3 tasks in the list.
+     Queue now holds 3 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Here are the matching tasks in your list:
+     Matches in queue:
      1.[T][ ] read book
      2.[D][ ] return book (by: Jun 15 2024)
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -1382,24 +1386,24 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] read book
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] buy groceries
-     Now you have 2 tasks in the list.
+     Queue now holds 2 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     No matching tasks found for: meeting
+     No matching tasks in the queue for: meeting
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -1424,25 +1428,25 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] Read Book
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] BUY GROCERIES
-     Now you have 2 tasks in the list.
+     Queue now holds 2 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     Here are the matching tasks in your list:
+     Matches in queue:
      1.[T][ ] Read Book
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```
 
@@ -1466,19 +1470,19 @@ ____________________________________________________________
 | |_| | |_| | | | | | | | (_| |
  \____|\__,_|_| |_|_| |_|\__,_|
 
-     Hello! I'm GUNNA.
-     What can I do for you?
+     Gunna online.
+     What are we tackling today?
 ____________________________________________________________
 ____________________________________________________________
-     Got it. I've added this task:
+     Task secured:
        [T][ ] read book
-     Now you have 1 tasks in the list.
+     Queue now holds 1 task(s).
 ____________________________________________________________
 ____________________________________________________________
-     OOPS!!! Please specify a search keyword.
+     Search keyword required.
      Usage: find <keyword>
 ____________________________________________________________
 ____________________________________________________________
-     Bye. Hope to see you again soon!
+     Gunna signing off. See you next mission.
 ____________________________________________________________
 ```

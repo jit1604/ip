@@ -89,7 +89,7 @@ public class DialogBox extends HBox {
      * @return A visibly distinct error dialog.
      */
     public static DialogBox getErrorDialog(String text, Image img) {
-        DialogBox dialogBox = new DialogBox("Error\n" + text, img);
+        DialogBox dialogBox = new DialogBox("Command issue\n" + text, img);
         dialogBox.flip();
         dialogBox.getStyleClass().add("error-dialog");
         return dialogBox;

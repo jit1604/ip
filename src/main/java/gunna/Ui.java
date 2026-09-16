@@ -33,8 +33,8 @@ public class Ui {
     public void showWelcome() {
         System.out.println(DELIMITER);
         System.out.println(BANNER);
-        System.out.println("     Hello! I'm GUNNA.");
-        System.out.println("     What can I do for you?");
+        System.out.println("     Gunna online.");
+        System.out.println("     What are we tackling today?");
         System.out.println(DELIMITER);
     }
 
@@ -42,7 +42,7 @@ public class Ui {
      * Displays the goodbye message when the user exits.
      */
     public void showGoodbye() {
-        showMessage("Bye. Hope to see you again soon!");
+        showMessage("Gunna signing off. See you next mission.");
     }
 
     /**
@@ -82,7 +82,7 @@ public class Ui {
      */
     public void showTaskList(ArrayList<Task> tasks) {
         System.out.println(DELIMITER);
-        System.out.println("     Here are the tasks in your list:");
+        System.out.println("     Current queue:");
         for (int i = 0; i < tasks.size(); i++) {
             System.out.println("     " + (i + 1) + "." + tasks.get(i));
         }
@@ -96,9 +96,9 @@ public class Ui {
      * @param taskCount The total number of tasks in the list.
      */
     public void showTaskAdded(Task task, int taskCount) {
-        showMessage("Got it. I've added this task:",
+        showMessage("Task secured:",
                 "  " + task,
-                "Now you have " + taskCount + " tasks in the list.");
+                "Queue now holds " + taskCount + " task(s).");
     }
 
     /**
@@ -107,7 +107,7 @@ public class Ui {
      * @param task The task that was marked as done.
      */
     public void showTaskMarked(Task task) {
-        showMessage("Nice! I've marked this task as done:", "  " + task);
+        showMessage("Marked complete:", "  " + task);
     }
 
     /**
@@ -116,7 +116,7 @@ public class Ui {
      * @param task The task that was unmarked.
      */
     public void showTaskUnmarked(Task task) {
-        showMessage("OK, I've marked this task as not done yet:", "  " + task);
+        showMessage("Returned to queue:", "  " + task);
     }
 
     /**
@@ -126,9 +126,9 @@ public class Ui {
      * @param taskCount The total number of tasks remaining in the list.
      */
     public void showTaskDeleted(Task task, int taskCount) {
-        showMessage("Noted. I've removed this task:",
+        showMessage("Removed from the queue:",
                 "  " + task,
-                "Now you have " + taskCount + " tasks in the list.");
+                "Queue now holds " + taskCount + " task(s).");
     }
 
     /**
@@ -149,9 +149,9 @@ public class Ui {
     public void showTasksOnDate(ArrayList<Task> tasks, String dateStr) {
         System.out.println(DELIMITER);
         if (tasks.isEmpty()) {
-            System.out.println("     No tasks found on " + dateStr);
+            System.out.println("     No tasks scheduled for " + dateStr);
         } else {
-            System.out.println("     Here are the tasks on " + dateStr + ":");
+            System.out.println("     Schedule for " + dateStr + ":");
             for (int i = 0; i < tasks.size(); i++) {
                 System.out.println("     " + (i + 1) + "." + tasks.get(i));
             }
@@ -168,9 +168,9 @@ public class Ui {
     public void showSearchResults(ArrayList<Task> tasks, String keyword) {
         System.out.println(DELIMITER);
         if (tasks.isEmpty()) {
-            System.out.println("     No matching tasks found for: " + keyword);
+            System.out.println("     No matching tasks in the queue for: " + keyword);
         } else {
-            System.out.println("     Here are the matching tasks in your list:");
+            System.out.println("     Matches in queue:");
             for (int i = 0; i < tasks.size(); i++) {
                 System.out.println("     " + (i + 1) + "." + tasks.get(i));
             }

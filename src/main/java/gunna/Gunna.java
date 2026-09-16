@@ -66,7 +66,7 @@ public class Gunna {
      * @return The welcome message.
      */
     public String getWelcomeMessage() {
-        return "Hello! I'm GUNNA.\nWhat can I do for you?";
+        return "Gunna online.\nWhat are we tackling today?";
     }
 
     /**

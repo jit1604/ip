@@ -33,13 +33,13 @@ public class TodoCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (description.isEmpty()) {
-            throw new DukeException("OOPS!!! The description of a todo cannot be empty.");
+            throw new DukeException("Task details are required for a todo.");
         }
         Task newTask = new Todo(description);
         tasks.add(newTask);
         ui.showTaskAdded(newTask, tasks.size());
         storage.saveTasks(tasks.getTasks());
-        return "Got it. I've added this task:\n  " + newTask
-                + "\nNow you have " + tasks.size() + " tasks in the list.";
+        return "Task secured:\n  " + newTask
+                + "\nQueue now holds " + tasks.size() + " task(s).";
     }
 }

@@ -35,7 +35,7 @@ public class FindCommand extends Command {
     @Override
     public String execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
         if (dateStr.isEmpty()) {
-            throw new DukeException("OOPS!!! Please specify a date.\n     Usage: on <yyyy-MM-dd>");
+            throw new DukeException("Date required.\n     Usage: on <yyyy-MM-dd>");
         }
         try {
             LocalDate searchDate = LocalDate.parse(dateStr, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
@@ -44,16 +44,16 @@ public class FindCommand extends Command {
             ui.showTasksOnDate(matchingTasks, formattedDate);
 
             if (matchingTasks.isEmpty()) {
-                return "No tasks found on " + formattedDate;
+                return "No tasks scheduled for " + formattedDate;
             } else {
-                StringBuilder response = new StringBuilder("Here are the tasks on " + formattedDate + ":");
+                StringBuilder response = new StringBuilder("Schedule for " + formattedDate + ":");
                 for (int i = 0; i < matchingTasks.size(); i++) {
                     response.append("\n").append(i + 1).append(".").append(matchingTasks.get(i));
                 }
                 return response.toString();
             }
         } catch (DateTimeParseException e) {
-            throw new DukeException("OOPS!!! Invalid date format. Please use: yyyy-MM-dd (e.g., 2019-12-31)");
+            throw new DukeException("Date format invalid. Use yyyy-MM-dd (e.g., 2019-12-31).");
         }
     }
 }
