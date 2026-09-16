@@ -59,7 +59,7 @@ jar {
 }
 
 shadowJar {
-    archiveFileName = 'duke.jar'
+    archiveFileName = 'gunna.jar'
     manifest {
         attributes 'Main-Class': 'Launcher'
     }

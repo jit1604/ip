@@ -21,13 +21,13 @@ plugins {
 }
 
 application {
-    mainClass = 'gunna.Gunna'  // Entry point of the application
+    mainClass = 'Launcher'  // Entry point of the application
 }
 
 shadowJar {
-    archiveFileName = 'duke.jar'  // Output file name
+    archiveFileName = 'gunna.jar'  // Output file name
     manifest {
-        attributes 'Main-Class': 'gunna.Gunna'  // Makes JAR executable
+        attributes 'Main-Class': 'Launcher'  // Makes JAR executable
     }
 }
 ```
@@ -50,7 +50,7 @@ This command:
 After building, the fat JAR file is located at:
 
 ```
-build/libs/duke.jar
+build/libs/gunna.jar
 ```
 
 The file size is approximately 24KB (may vary based on dependencies).
@@ -60,18 +60,18 @@ The file size is approximately 24KB (may vary based on dependencies).
 To run the application, use:
 
 ```bash
-java -jar build/libs/duke.jar
+java -jar build/libs/gunna.jar
 ```
 
 You can also run it from any directory by providing the full or relative path:
 
 ```bash
-java -jar /path/to/project/build/libs/duke.jar
+java -jar /path/to/project/build/libs/gunna.jar
 ```
 
 ## Distributing the JAR
 
-The `duke.jar` file is completely self-contained and can be:
+The `gunna.jar` file is completely self-contained and can be:
 - Copied to any location
 - Shared with others
 - Run on any system with Java 21+ installed
@@ -79,10 +79,10 @@ The `duke.jar` file is completely self-contained and can be:
 Example distribution:
 ```bash
 # Copy to a distribution folder
-cp build/libs/duke.jar ~/Desktop/
+cp build/libs/gunna.jar ~/Desktop/
 
 # Run from the new location
-java -jar ~/Desktop/duke.jar
+java -jar ~/Desktop/gunna.jar
 ```
 
 ## Cleaning and Rebuilding
