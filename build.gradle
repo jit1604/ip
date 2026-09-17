@@ -25,6 +25,11 @@ repositories {
 }
 
 dependencies {
+    // Include JavaFX graphics runtimes for each supported platform.
+    runtimeOnly "org.openjfx:javafx-graphics:${javafx.version}:mac-aarch64@jar"
+    runtimeOnly "org.openjfx:javafx-graphics:${javafx.version}:linux@jar"
+    runtimeOnly "org.openjfx:javafx-graphics:${javafx.version}:win@jar"
+
     String jUnitVersion = '5.14.4'
 
     testImplementation "org.junit.jupiter:junit-jupiter-api:${jUnitVersion}"
