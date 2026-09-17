@@ -1,5 +1,6 @@
 package gunna;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -422,16 +423,20 @@ public class ParserTest {
 
     @Test
     public void parse_sortWithoutCriterion_throwsException() {
-        assertThrows(DukeException.class, () -> {
+        DukeException exception = assertThrows(DukeException.class, () -> {
             Parser.parse("sort");
         }, "Parsing 'sort' without criterion should throw DukeException");
+        assertEquals("Sort criterion required.\n"
+                + "     Usage: sort status / sort description / sort date", exception.getMessage());
     }
 
     @Test
     public void parse_sortWithInvalidCriterion_throwsException() {
-        assertThrows(DukeException.class, () -> {
-            Parser.parse("sort invalid");
-        }, "Parsing 'sort invalid' should throw DukeException");
+        DukeException exception = assertThrows(DukeException.class, () -> {
+            Parser.parse("sort banana");
+        }, "Parsing 'sort banana' should throw DukeException");
+        assertEquals("Invalid sort criterion.\n"
+                + "     Usage: sort status / sort description / sort date", exception.getMessage());
 
         assertThrows(DukeException.class, () -> {
             Parser.parse("sort abc");

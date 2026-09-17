@@ -25,7 +25,7 @@ on startup. Launch from the same folder each time to use the same task list.
 - Replace uppercase placeholders such as `DESCRIPTION` with your own text.
   Descriptions may contain spaces. Do not type the placeholder names.
 - `NUMBER` is a task's position in the full `list`, starting at **1**.
-  Run `list` before marking, unmarking, or deleting a task: `find` and `on`
+  Run `list` before marking, unmarking, or deleting a task: `find`, `on`, and `sort`
   number their results separately, and those numbers may differ from the full list.
 - New tasks start incomplete. `[ ]` means incomplete and `[X]` means complete.
   `[T]`, `[D]`, and `[E]` identify todos, deadlines, and events respectively.
@@ -38,6 +38,9 @@ on startup. Launch from the same folder each time to use the same task list.
 | `deadline` | `deadline DESCRIPTION /by DATE` | Add a task with a due date. |
 | `event` | `event DESCRIPTION /from START /to END` | Add an event with start and end text. |
 | `list` | `list` | Show all tasks. |
+| `sort` | `sort status` | Display incomplete tasks before completed tasks. |
+| `sort` | `sort description` | Display tasks alphabetically, ignoring case. |
+| `sort` | `sort date` | Display deadlines first, earliest due date first. |
 | `mark` | `mark NUMBER` | Mark a task complete. |
 | `unmark` | `unmark NUMBER` | Mark a task incomplete. |
 | `delete` | `delete NUMBER` | Remove a task. |
@@ -113,6 +116,32 @@ Current queue:
 ```
 
 An empty list displays only `Current queue:`.
+
+### Sort the displayed tasks: `sort`
+
+**Format:** `sort status / sort description / sort date`
+
+Choose one of these commands; the slashes above separate alternatives.
+
+- **`sort status`** displays incomplete tasks first and completed tasks afterward.
+  Relative order within each status group remains stable.
+- **`sort description`** displays tasks alphabetically by description,
+  ignoring letter case.
+- **`sort date`** displays deadlines first, earliest deadline first. Todos and
+  events appear afterward while retaining their relative order.
+
+**Example:** `sort date` shows tasks under `Here are your tasks sorted by date:`.
+
+Sorting is **display-only and temporary**. It does not change the underlying
+TaskList or persisted task order. Running `list` afterward shows the normal
+original task order. Use numbers from `list` when marking, unmarking, or deleting.
+
+Invalid usage produces the following replies:
+
+- `sort`: `Sort criterion required.`
+- `sort banana`: `Invalid sort criterion.`
+
+Both replies include `Usage: sort status / sort description / sort date`.
 
 ### Mark a task complete: `mark`
 
